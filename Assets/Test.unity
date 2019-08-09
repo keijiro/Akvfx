@@ -467,8 +467,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316fc3b53d38658479c35b9adcda860c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _colorUI: {fileID: 1470718383}
-  _depthUI: {fileID: 667727636}
+  _colorTexture: {fileID: 8400000, guid: 32764d5a0342b1440828e4a41b370931, type: 2}
+  _positionTexture: {fileID: 8400000, guid: fcd8c3cd4e775064fb379815be58d5e8, type: 2}
+  _shader: {fileID: 4800000, guid: 779737dad87fcf74cb148ea6c7c6c004, type: 3}
 --- !u!4 &1751743290
 Transform:
   m_ObjectHideFlags: 0
