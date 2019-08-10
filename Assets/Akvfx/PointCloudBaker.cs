@@ -4,9 +4,9 @@ using IntPtr = System.IntPtr;
 using TimeSpan = System.TimeSpan;
 using Microsoft.Azure.Kinect.Sensor;
 
-namespace K4aTest
+namespace Akvfx
 {
-    sealed class Tester : MonoBehaviour
+    public sealed class PointCloudBaker : MonoBehaviour
     {
         #region Editable attributes
 
@@ -48,11 +48,11 @@ namespace K4aTest
             _colorTemp.Apply();
             _pointCloud.Apply();
 
-            _material.SetTexture("_MainTex", _pointCloud);
+            _material.SetTexture("_SourceTexture", _pointCloud);
             _material.SetVector("_Dimensions", new Vector2(color.WidthPixels, color.HeightPixels));
 
             Graphics.Blit(_colorTemp, _colorTexture);
-            Graphics.Blit(_pointCloud, _positionTexture, _material, 0);
+            Graphics.Blit(null, _positionTexture, _material, 0);
         }
 
         #endregion

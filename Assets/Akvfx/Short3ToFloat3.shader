@@ -1,10 +1,10 @@
-﻿Shader "Hidden/Converter"
+﻿Shader "Hidden/Akvfx/Short3ToFloat3"
 {
     CGINCLUDE
 
     #include "UnityCG.cginc"
 
-    texture2D _MainTex;
+    texture2D _SourceTexture;
     float2 _Dimensions;
 
     void Vertex(
@@ -26,12 +26,12 @@
 
         sx *= 6;
 
-        int b0 = _MainTex[uint2(sx + 0, sy)] * 255;
-        int b1 = _MainTex[uint2(sx + 1, sy)] * 255;
-        int b2 = _MainTex[uint2(sx + 2, sy)] * 255;
-        int b3 = _MainTex[uint2(sx + 3, sy)] * 255;
-        int b4 = _MainTex[uint2(sx + 4, sy)] * 255;
-        int b5 = _MainTex[uint2(sx + 5, sy)] * 255;
+        int b0 = _SourceTexture[uint2(sx + 0, sy)] * 255;
+        int b1 = _SourceTexture[uint2(sx + 1, sy)] * 255;
+        int b2 = _SourceTexture[uint2(sx + 2, sy)] * 255;
+        int b3 = _SourceTexture[uint2(sx + 3, sy)] * 255;
+        int b4 = _SourceTexture[uint2(sx + 4, sy)] * 255;
+        int b5 = _SourceTexture[uint2(sx + 5, sy)] * 255;
 
         float3 xyz = float3(b0 + (b1 << 8), b2 + (b3 << 8), b4 + (b5 << 8));
         xyz = (xyz < 0x8000 ? xyz : xyz - 0x10000) / 0x8000;
