@@ -8,6 +8,7 @@ namespace Akvfx
     {
         #region Editable attributes
 
+        [SerializeField] DeviceSettings _deviceSettings = null;
         [SerializeField] RenderTexture _colorTexture = null;
         [SerializeField] RenderTexture _positionTexture = null;
         [SerializeField, HideInInspector] Shader _shader = null;
@@ -27,7 +28,7 @@ namespace Akvfx
         void Start()
         {
             // Start capturing via the threaded driver.
-            _driver = new ThreadedDriver();
+            _driver = new ThreadedDriver(_deviceSettings);
 
             // Temporary objects for convertion shader
             _material = new Material(_shader);

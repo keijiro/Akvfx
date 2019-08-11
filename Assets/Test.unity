@@ -919,6 +919,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 316fc3b53d38658479c35b9adcda860c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _deviceSettings: {fileID: 11400000, guid: 78d2d0c19822b07428bb2b8b4ed7c2fb, type: 2}
   _colorTexture: {fileID: 8400000, guid: 32764d5a0342b1440828e4a41b370931, type: 2}
   _positionTexture: {fileID: 8400000, guid: fcd8c3cd4e775064fb379815be58d5e8, type: 2}
   _shader: {fileID: 4800000, guid: 779737dad87fcf74cb148ea6c7c6c004, type: 3}

@@ -10,10 +10,12 @@ namespace Akvfx
     {
         #region Public methods
 
-        public ThreadedDriver()
+        public ThreadedDriver(DeviceSettings settings)
         {
             // FIXME: Dangerous. We should do this only on Player.
             UnsafeUtility.DisableSafeCopyNativeBuffers();
+
+            _settings = settings;
 
             _captureThread = new Thread(CaptureThread);
             _captureThread.Start();
@@ -51,6 +53,12 @@ namespace Akvfx
             _lockedFrame.position?.Dispose();
             _lockedFrame = (null, null);
         }
+
+        #endregion
+
+        #region Private objects
+
+        DeviceSettings _settings;
 
         #endregion
 
@@ -101,6 +109,12 @@ namespace Akvfx
             // Set up the transformation object.
             var transformation = new Transformation(device.GetCalibration());
 
+            device.SetColorControl(ColorControlCommand.ExposureTimeAbsolute, ColorControlMode.Manual, 15000);
+            device.SetColorControl(ColorControlCommand.Saturation, ColorControlMode.Manual, 63);
+
+            // Initially apply the device settings.
+            var setter = new DeviceSettingController(device, _settings);
+
             while (!_terminate)
             {
                 // Get a frame capture.
@@ -121,6 +135,9 @@ namespace Akvfx
 
                 // Remove old frames.
                 TrimQueue(1);
+
+                // Apply changes on the device settings.
+                setter.ApplySettings(device, _settings);
             }
 
             // Cleaning up.
