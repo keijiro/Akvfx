@@ -1,9 +1,6 @@
 using UnityEngine;
 using GraphicsFormat = UnityEngine.Experimental.Rendering.GraphicsFormat;
 using IntPtr = System.IntPtr;
-using TimeSpan = System.TimeSpan;
-using System.Threading;
-using Microsoft.Azure.Kinect.Sensor;
 
 namespace Akvfx
 {
@@ -17,88 +14,11 @@ namespace Akvfx
 
         #endregion
 
-        #region K4a objects
+        #region Internal objects
 
-        Device _device;
-        Transformation _transformation;
-
-        #endregion
-
-        #region UnityEngine objects
-
+        ThreadedDriver _driver;
         Material _material;
-        Texture2D _colorTemp;
-        Texture2D _pointCloud;
-
-        #endregion
-
-        #region Threaded capture
-
-        Thread _captureThread;
-        bool _terminate;
-        AutoResetEvent _nextCapture;
-        (Image color, Image pointCloud) _captured;
-
-        void CaptureThread()
-        {
-            while (!_terminate)
-            {
-                try
-                {
-                    // Try to capture a frame with 1/15 sec timeout.
-                    using (var capture = _device.GetCapture(TimeSpan.FromSeconds(1.0 / 15)))
-                    {
-                        // Transform the depth image to the color perspective.
-                        using (var depth = _transformation.DepthImageToColorCamera(capture))
-                        {
-                            // Unproject the depth samples and reconstruct a point cloud.
-                            using (var pointCloud = _transformation.DepthImageToPointCloud
-                                (depth, CalibrationDeviceType.Color))
-                            {
-                                // Send the results to the main thread.
-                                _captured = (capture.Color, pointCloud);
-
-                                // Wait the main thead consumes them.
-                                _nextCapture.WaitOne();
-                            }
-                        }
-                    }
-                }
-                catch (System.TimeoutException)
-                {
-                    Thread.Sleep(100);
-                }
-            }
-        }
-
-        #endregion
-
-        #region Private functions
-
-        unsafe void UpdateTexturesByCapturedData()
-        {
-            var cmem = _captured.color.Memory;
-
-            using (var handle = cmem.Pin())
-                _colorTemp.LoadRawTextureData((IntPtr)handle.Pointer, cmem.Length);
-
-            var pmem = _captured.pointCloud.Memory;
-
-            using (var handle = pmem.Pin())
-                _pointCloud.LoadRawTextureData((IntPtr)handle.Pointer, pmem.Length);
-
-            _colorTemp.Apply();
-            _pointCloud.Apply();
-
-            _material.SetTexture("_SourceTexture", _pointCloud);
-            _material.SetVector("_Dimensions", new Vector2(
-                _captured.color.WidthPixels,
-                _captured.color.HeightPixels
-            ));
-
-            Graphics.Blit(_colorTemp, _colorTexture);
-            Graphics.Blit(null, _positionTexture, _material, 0);
-        }
+        (Texture2D color, Texture2D position) _temporaries;
 
         #endregion
 
@@ -106,63 +26,50 @@ namespace Akvfx
 
         void Start()
         {
-            // If there is no available device, do nothing.
-            if (Device.GetInstalledCount() == 0) return;
-
-            // Open the default device.
-            _device = Device.Open();
-            if (_device == null) return;
-
-            // Start capturing with our settings.
-            _device.StartCameras(
-                new DeviceConfiguration {
-                    ColorFormat = ImageFormat.ColorBGRA32,
-                    ColorResolution = ColorResolution.R1536p, // 2048 x 1536 (4:3)
-                    DepthMode = DepthMode.NFOV_Unbinned,      // 640x576
-                    SynchronizedImagesOnly = true
-                }
-            );
-
-            // Prepare the transformation object.
-            _transformation = new Transformation(_device.GetCalibration());
+            // Start capturing via the threaded driver.
+            _driver = new ThreadedDriver();
 
             // Temporary objects for convertion shader
             _material = new Material(_shader);
-            _colorTemp = new Texture2D(2048, 1536, GraphicsFormat.B8G8R8A8_SRGB, 0);
-            _pointCloud = new Texture2D(2048 * 6, 1536, GraphicsFormat.R8_UNorm, 0);
-
-            // Start the capture thread.
-            _captureThread = new Thread(CaptureThread);
-            _nextCapture = new AutoResetEvent(false);
-            _captureThread.Start();
+            _temporaries = (
+                new Texture2D(2048, 1536, GraphicsFormat.B8G8R8A8_SRGB, 0),
+                new Texture2D(2048 * 6, 1536, GraphicsFormat.R8_UNorm, 0)
+            );
         }
 
         void OnDestroy()
         {
-            if (_captureThread != null)
-            {
-                _terminate = true;
-                _nextCapture.Set();
-                _captureThread.Join();
-            }
-
             if (_material != null) Destroy(_material);
-            if (_colorTemp != null) Destroy(_colorTemp);
-            if (_pointCloud != null) Destroy(_pointCloud);
-
-            _transformation?.Dispose();
-            _device?.StopCameras();
-            _device?.Dispose();
+            if (_temporaries.color != null) Destroy(_temporaries.color);
+            if (_temporaries.position != null) Destroy(_temporaries.position);
+            _driver?.Dispose();
         }
 
-        void Update()
+        unsafe void Update()
         {
-            if (_captured.color != null && _captured.pointCloud != null)
-            {
-                UpdateTexturesByCapturedData();
-                _captured = (null, null);
-                _nextCapture.Set();
-            }
+            // Try retrieving the last frame.
+            var (cmem, pmem) = _driver.LockLastFrame();
+            if (cmem.IsEmpty || pmem.IsEmpty) return;
+
+            // Load the frame data into the temporary textures.
+            using (var handle = cmem.Pin())
+                _temporaries.color.LoadRawTextureData((IntPtr)handle.Pointer, cmem.Length);
+
+            using (var handle = pmem.Pin())
+                _temporaries.position.LoadRawTextureData((IntPtr)handle.Pointer, pmem.Length);
+
+            _temporaries.color.Apply();
+            _temporaries.position.Apply();
+
+            // We don't need the last frame any more.
+            _driver.ReleaseLastFrame();
+
+            // Update the external textures.
+            Graphics.Blit(_temporaries.color, _colorTexture);
+
+            _material.SetTexture("_SourceTexture", _temporaries.position);
+            _material.SetVector("_Dimensions", new Vector2(2048, 1536));
+            Graphics.Blit(null, _positionTexture, _material, 0);
         }
 
         #endregion
