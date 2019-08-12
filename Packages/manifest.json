@@ -1,9 +1,19 @@
 {
+  "scopedRegistries": [
+    {
+      "name": "Unity NuGet",
+      "url": "https://unitynuget-registry.azurewebsites.net",
+      "scopes": [
+        "org.nuget"
+      ]
+    }
+  ],
   "dependencies": {
     "com.unity.package-manager-ui": "2.2.0",
     "com.unity.render-pipelines.high-definition": "6.9.1-preview",
     "com.unity.ugui": "1.0.0",
     "jp.keijiro.klak.motion": "https://github.com/keijiro/ProceduralMotion.git#upm",
+    "org.nuget.system.memory": "4.5.3",
     "com.unity.modules.animation": "1.0.0",
     "com.unity.modules.imageconversion": "1.0.0",
     "com.unity.modules.physics": "1.0.0",
