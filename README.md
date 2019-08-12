@@ -3,6 +3,8 @@ Akvfx
 
 ![gif](https://i.imgur.com/h0kApp4.gif)
 
+![gif](https://i.imgur.com/lXRiwU3.gif)
+
 **Akvfx** is a plugin for Unity that captures color/depth data from [Azure
 Kinect] and convert them into attribute maps (textures) that are convenient for
 using in [Visual Effect Graph].
