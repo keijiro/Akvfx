@@ -109,9 +109,6 @@ namespace Akvfx
             // Set up the transformation object.
             var transformation = new Transformation(device.GetCalibration());
 
-            device.SetColorControl(ColorControlCommand.ExposureTimeAbsolute, ColorControlMode.Manual, 15000);
-            device.SetColorControl(ColorControlCommand.Saturation, ColorControlMode.Manual, 63);
-
             // Initially apply the device settings.
             var setter = new DeviceSettingController(device, _settings);
 
