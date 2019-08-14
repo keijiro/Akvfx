@@ -80,8 +80,10 @@ namespace Akvfx
             _material.SetTexture("_DepthTexture", _temporaries.depth);
             _material.SetBuffer("_XYTable", _xyTable);
             _material.SetFloat("_MaxDepth", _deviceSettings.maxDepth);
+            var prevRT = RenderTexture.active;
             GraphicsExtensions.SetRenderTarget(_colorTexture, _positionTexture);
             Graphics.Blit(null, _material, 0);
+            RenderTexture.active = prevRT;
         }
 
         #endregion
