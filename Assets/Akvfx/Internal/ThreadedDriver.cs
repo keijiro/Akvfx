@@ -1,6 +1,7 @@
 using Microsoft.Azure.Kinect.Sensor;
 using System.Collections.Concurrent;
 using System.Threading;
+using System.Threading.Tasks;
 
 using ByteMemory = System.Memory<byte>;
 
@@ -8,7 +9,7 @@ namespace Akvfx
 {
     sealed class ThreadedDriver : System.IDisposable
     {
-        #region Public methods
+        #region Public properties and methods
 
         public ThreadedDriver(DeviceSettings settings)
         {
@@ -30,6 +31,10 @@ namespace Akvfx
             ReleaseLastFrame();
 
             System.GC.SuppressFinalize(this);
+        }
+
+        public System.ReadOnlySpan<float> XYTable {
+            get { return _xyTable?.Data; }
         }
 
         public (ByteMemory color, ByteMemory position) LockLastFrame()
@@ -59,6 +64,7 @@ namespace Akvfx
         #region Private objects
 
         DeviceSettings _settings;
+        XYTable _xyTable;
 
         #endregion
 
@@ -105,6 +111,11 @@ namespace Akvfx
                     SynchronizedImagesOnly = true
                 }
             );
+
+            // Construct XY table as a background task.
+            Task.Run(() => {
+                _xyTable = new XYTable(device.GetCalibration(), 2048, 1536);
+            });
 
             // Set up the transformation object.
             var transformation = new Transformation(device.GetCalibration());
