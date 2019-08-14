@@ -37,7 +37,7 @@ namespace Akvfx
             get { return _xyTable?.Data; }
         }
 
-        public (ByteMemory color, ByteMemory position) LockLastFrame()
+        public (ByteMemory color, ByteMemory depth) LockLastFrame()
         {
             // Try retrieving the last frame.
             if (_lockedFrame.capture == null)
@@ -48,14 +48,14 @@ namespace Akvfx
 
             return (
                 _lockedFrame.capture.Color.Memory,
-                _lockedFrame.position.Memory
+                _lockedFrame.depth.Memory
             );
         }
 
         public void ReleaseLastFrame()
         {
             _lockedFrame.capture?.Dispose();
-            _lockedFrame.position?.Dispose();
+            _lockedFrame.depth?.Dispose();
             _lockedFrame = (null, null);
         }
 
@@ -70,20 +70,20 @@ namespace Akvfx
 
         #region Capture queue
 
-        ConcurrentQueue<(Capture capture, Image position)>
+        ConcurrentQueue<(Capture capture, Image depth)>
             _queue = new ConcurrentQueue<(Capture, Image)>();
 
-        (Capture capture, Image position) _lockedFrame;
+        (Capture capture, Image depth) _lockedFrame;
 
         // Trim the queue to a specified count.
         void TrimQueue(int count)
         {
             while (_queue.Count > count)
             {
-                (Capture capture, Image position) temp;
+                (Capture capture, Image depth) temp;
                 _queue.TryDequeue(out temp);
                 temp.capture?.Dispose();
-                temp.position?.Dispose();
+                temp.depth?.Dispose();
             }
         }
 
@@ -131,15 +131,8 @@ namespace Akvfx
                 // Transform the depth image to the color perspective.
                 var depth = transformation.DepthImageToColorCamera(capture);
 
-                // Unproject the depth samples and reconstruct a point cloud.
-                var pointCloud = transformation.DepthImageToPointCloud
-                    (depth, CalibrationDeviceType.Color);
-
-                // Transformed depth is not needed any more.
-                depth.Dispose();
-
                 // Push the frame to the capture queue.
-                _queue.Enqueue((capture, pointCloud));
+                _queue.Enqueue((capture, depth));
 
                 // Remove old frames.
                 TrimQueue(1);
