@@ -1,20 +1,19 @@
 using Microsoft.Azure.Kinect.Sensor;
+using System;
 using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ByteMemory = System.Memory<byte>;
-
 namespace Akvfx
 {
-    sealed class ThreadedDriver : System.IDisposable
+    sealed class ThreadedDriver : IDisposable
     {
         #region Public properties and methods
 
         public ThreadedDriver(DeviceSettings settings)
         {
             // FIXME: Dangerous. We should do this only on Player.
-            UnsafeUtility.DisableSafeCopyNativeBuffers();
+            K4aExtensions.DisableSafeCopyNativeBuffers();
 
             _settings = settings;
 
@@ -30,14 +29,16 @@ namespace Akvfx
             TrimQueue(0);
             ReleaseLastFrame();
 
-            System.GC.SuppressFinalize(this);
+            GC.SuppressFinalize(this);
         }
 
-        public System.ReadOnlySpan<float> XYTable {
-            get { return _xyTable?.Data; }
+        public ReadOnlySpan<float> XYTable
+        {
+            get { return _xyTable != null ? _xyTable.Data : null; }
         }
 
-        public (ByteMemory color, ByteMemory position) LockLastFrame()
+        public (ReadOnlyMemory<byte> color,
+                ReadOnlyMemory<byte> depth) LockLastFrame()
         {
             // Try retrieving the last frame.
             if (_lockedFrame.capture == null)
@@ -46,16 +47,14 @@ namespace Akvfx
             // Return null if it failed to retrieve.
             if (_lockedFrame.capture == null) return (null, null);
 
-            return (
-                _lockedFrame.capture.Color.Memory,
-                _lockedFrame.position.Memory
-            );
+            return (_lockedFrame.capture.Color.Memory,
+                    _lockedFrame.depth.Memory);
         }
 
         public void ReleaseLastFrame()
         {
             _lockedFrame.capture?.Dispose();
-            _lockedFrame.position?.Dispose();
+            _lockedFrame.depth?.Dispose();
             _lockedFrame = (null, null);
         }
 
@@ -70,20 +69,20 @@ namespace Akvfx
 
         #region Capture queue
 
-        ConcurrentQueue<(Capture capture, Image position)>
+        ConcurrentQueue<(Capture capture, Image depth)>
             _queue = new ConcurrentQueue<(Capture, Image)>();
 
-        (Capture capture, Image position) _lockedFrame;
+        (Capture capture, Image depth) _lockedFrame;
 
         // Trim the queue to a specified count.
         void TrimQueue(int count)
         {
             while (_queue.Count > count)
             {
-                (Capture capture, Image position) temp;
+                (Capture capture, Image depth) temp;
                 _queue.TryDequeue(out temp);
                 temp.capture?.Dispose();
-                temp.position?.Dispose();
+                temp.depth?.Dispose();
             }
         }
 
@@ -131,15 +130,8 @@ namespace Akvfx
                 // Transform the depth image to the color perspective.
                 var depth = transformation.DepthImageToColorCamera(capture);
 
-                // Unproject the depth samples and reconstruct a point cloud.
-                var pointCloud = transformation.DepthImageToPointCloud
-                    (depth, CalibrationDeviceType.Color);
-
-                // Transformed depth is not needed any more.
-                depth.Dispose();
-
                 // Push the frame to the capture queue.
-                _queue.Enqueue((capture, pointCloud));
+                _queue.Enqueue((capture, depth));
 
                 // Remove old frames.
                 TrimQueue(1);

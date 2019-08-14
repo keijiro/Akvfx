@@ -1,6 +1,5 @@
 using UnityEngine;
 using GraphicsFormat = UnityEngine.Experimental.Rendering.GraphicsFormat;
-using IntPtr = System.IntPtr;
 
 namespace Akvfx
 {
@@ -18,9 +17,9 @@ namespace Akvfx
         #region Internal objects
 
         ThreadedDriver _driver;
-        ComputeBuffer _xyTable;
         Material _material;
-        (Texture2D color, Texture2D position) _temporaries;
+        ComputeBuffer _xyTable;
+        (Texture2D color, Texture2D depth) _temporaries;
 
         #endregion
 
@@ -35,18 +34,20 @@ namespace Akvfx
             _material = new Material(_shader);
             _temporaries = (
                 new Texture2D(2048, 1536, GraphicsFormat.B8G8R8A8_SRGB, 0),
-                new Texture2D(2048 * 6, 1536, GraphicsFormat.R8_UNorm, 0)
+                new Texture2D(2048 * 2, 1536, GraphicsFormat.R8_UNorm, 0)
             );
         }
 
         void OnDestroy()
         {
             if (_material != null) Destroy(_material);
-            if (_temporaries.color != null) Destroy(_temporaries.color);
-            if (_temporaries.position != null) Destroy(_temporaries.position);
             _xyTable?.Dispose();
+            if (_temporaries.color != null) Destroy(_temporaries.color);
+            if (_temporaries.depth != null) Destroy(_temporaries.depth);
             _driver?.Dispose();
         }
+
+        RenderBuffer[] _mrt = new RenderBuffer[2];
 
         unsafe void Update()
         {
@@ -62,28 +63,24 @@ namespace Akvfx
             }
 
             // Try retrieving the last frame.
-            var (cmem, pmem) = _driver.LockLastFrame();
-            if (cmem.IsEmpty || pmem.IsEmpty) return;
+            var (color, depth) = _driver.LockLastFrame();
+            if (color.IsEmpty || depth.IsEmpty) return;
 
             // Load the frame data into the temporary textures.
-            using (var handle = cmem.Pin())
-                _temporaries.color.LoadRawTextureData((IntPtr)handle.Pointer, cmem.Length);
-
-            using (var handle = pmem.Pin())
-                _temporaries.position.LoadRawTextureData((IntPtr)handle.Pointer, pmem.Length);
-
+            _temporaries.color.LoadRawTextureData(color.Span);
+            _temporaries.depth.LoadRawTextureData(depth.Span);
             _temporaries.color.Apply();
-            _temporaries.position.Apply();
+            _temporaries.depth.Apply();
 
             // We don't need the last frame any more.
             _driver.ReleaseLastFrame();
 
-            // Update the external textures.
-            Graphics.Blit(_temporaries.color, _colorTexture);
-
-            _material.SetTexture("_SourceTexture", _temporaries.position);
-            _material.SetVector("_Dimensions", new Vector2(2048, 1536));
-            Graphics.Blit(null, _positionTexture, _material, 0);
+            // Invoke the unprojection shader.
+            _material.SetTexture("_ColorTexture", _temporaries.color);
+            _material.SetTexture("_DepthTexture", _temporaries.depth);
+            _material.SetBuffer("_XYTable", _xyTable);
+            GraphicsExtensions.SetRenderTarget(_colorTexture, _positionTexture);
+            Graphics.Blit(null, _material, 0);
         }
 
         #endregion
