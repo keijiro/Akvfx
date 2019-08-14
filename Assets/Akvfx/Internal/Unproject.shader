@@ -38,13 +38,13 @@
         // Depth sample (int16 -> float)
         int d0 = _DepthTexture[uint2(tx * 2 + 0, ty)] * 255;
         int d1 = _DepthTexture[uint2(tx * 2 + 1, ty)] * 255;
-        float depth = (float)(d0 + (d1 << 8)) / 0x8000;
+        float depth = (float)(d0 + (d1 << 8)) / 1000;
         float mask = depth > 0 && depth < _MaxDepth;
         float z = lerp(_MaxDepth, depth, mask);
 
         // XY table lookup
         uint xy_i = (tx + ty * w) * 2;
-        float2 xy = float2(_XYTable[xy_i], _XYTable[xy_i + 1]);
+        float2 xy = float2(_XYTable[xy_i], -_XYTable[xy_i + 1]);
 
         // MRT output write
         colorOut = float4(color.rgb, mask);

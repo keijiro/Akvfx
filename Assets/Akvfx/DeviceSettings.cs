@@ -21,7 +21,7 @@ namespace Akvfx
         [SerializeField] bool _enableBlc = false;
         [SerializeField] bool _powerIs60Hz = true;
 
-        [SerializeField, Range(0, 1)] float _maxDepth = 1;
+        [SerializeField, Range(0, 6.6f)] float _maxDepth = 1;
 
         #endregion
 
