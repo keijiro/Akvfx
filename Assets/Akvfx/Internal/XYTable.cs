@@ -1,24 +1,29 @@
 using Microsoft.Azure.Kinect.Sensor;
+using System;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
 namespace Akvfx
 {
     //
-    // Per pixel ray table ("XY table") used to unproject depth samples to the
-    // 3D camera space
+    // Per pixel ray direction table ("XY table") used to unproject depth
+    // samples to the 3D camera space
     //
-    // This directly invokes a native method in libk4a to avoid double symbol
-    // definition problem between System.Numerics and System.Numerics.Vectors.
+    // This class directly invokes a native method (k4a_calibration_2d_to_3d)
+    // contained in libk4a to avoid double symbol definition problem between
+    // System.Numerics and System.Numerics.Vectors.
     //
     sealed class XYTable
     {
         // Public property: Table data
-        public float [] Data { get; private set; }
+        public ReadOnlySpan<float> Data { get { return _data; } }
 
         // Float vvector types
         struct Float2 { public float x, y; }
         struct Float3 { public float x, y, z; }
+
+        // Data storage
+        float [] _data;
 
         // Constructor
         public XYTable(Calibration calibration, int width, int height)
@@ -26,7 +31,10 @@ namespace Akvfx
             // Data storage allocation
             var table = new float [width * height * 2];
 
-            // Initialize the xy table in a parallel way.
+            // XY table initialization
+            // These loops could take a significant amount of time (e.g. 1 sec)
+            // even on a decent desktop PC. Luckily, this can be easily
+            // parallelized by using Parallel.For, so we did.
             Parallel.For(0, height, y => {
                 Float2 v2;
                 Float3 v3;
@@ -54,10 +62,10 @@ namespace Akvfx
             });
 
             // Publish the table data.
-            Data = table;
+            _data = table;
         }
 
-        // k4a_calibration_2d_to_3d native method in libk4a
+        // k4a_calibration_2d_to_3d native method from libk4a
         [DllImport("k4a", CallingConvention = CallingConvention.Cdecl)]
         static extern int k4a_calibration_2d_to_3d(
             [In] ref Calibration calibration,

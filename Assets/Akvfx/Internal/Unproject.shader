@@ -1,4 +1,4 @@
-﻿Shader "Hidden/Akvfx/Short3ToFloat3"
+﻿Shader "Hidden/Akvfx/Unproject"
 {
     CGINCLUDE
 
@@ -6,7 +6,6 @@
 
     texture2D _ColorTexture;
     texture2D _DepthTexture;
-    float2 _Dimensions;
     StructuredBuffer<float> _XYTable;
 
     void Vertex(
@@ -25,20 +24,30 @@
         out float4 positionOut : SV_Target1
     )
     {
-        uint sx = texCoord.x * _Dimensions.x;
-        uint sy = texCoord.y * _Dimensions.y;
+        uint w, h;
+        _ColorTexture.GetDimensions(w, h);
 
-        float4 color = _ColorTexture[uint2(sx, sy)];
+        // Texture index
+        uint tx = texCoord.x * w;
+        uint ty = texCoord.y * h;
 
-        int d0 = _DepthTexture[uint2(sx * 2 + 0, sy)] * 255;
-        int d1 = _DepthTexture[uint2(sx * 2 + 1, sy)] * 255;
+        // Color sample
+        float4 color = _ColorTexture[uint2(tx, ty)];
+
+        // Depth sample (int16 -> float)
+        int d0 = _DepthTexture[uint2(tx * 2 + 0, ty)] * 255;
+        int d1 = _DepthTexture[uint2(tx * 2 + 1, ty)] * 255;
         float depth = (float)(d0 + (d1 << 8)) / 0x8000;
+        float mask = depth > 0;
+        float z = lerp(1, depth, mask);
 
-        uint xy_i = (sx + sy * _Dimensions.x) * 2;
+        // XY table lookup
+        uint xy_i = (tx + ty * w) * 2;
         float2 xy = float2(_XYTable[xy_i], _XYTable[xy_i + 1]);
 
-        colorOut = color;
-        positionOut = float4(xy * depth, depth, 1);
+        // MRT output write
+        colorOut = float4(color.rgb, mask);
+        positionOut = float4(xy * z, z, mask);
     }
 
     ENDCG

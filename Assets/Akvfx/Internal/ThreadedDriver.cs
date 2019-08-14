@@ -1,20 +1,19 @@
 using Microsoft.Azure.Kinect.Sensor;
+using System;
 using System.Collections.Concurrent;
 using System.Threading;
 using System.Threading.Tasks;
 
-using ByteMemory = System.Memory<byte>;
-
 namespace Akvfx
 {
-    sealed class ThreadedDriver : System.IDisposable
+    sealed class ThreadedDriver : IDisposable
     {
         #region Public properties and methods
 
         public ThreadedDriver(DeviceSettings settings)
         {
             // FIXME: Dangerous. We should do this only on Player.
-            UnsafeUtility.DisableSafeCopyNativeBuffers();
+            K4aExtensions.DisableSafeCopyNativeBuffers();
 
             _settings = settings;
 
@@ -30,14 +29,16 @@ namespace Akvfx
             TrimQueue(0);
             ReleaseLastFrame();
 
-            System.GC.SuppressFinalize(this);
+            GC.SuppressFinalize(this);
         }
 
-        public System.ReadOnlySpan<float> XYTable {
-            get { return _xyTable?.Data; }
+        public ReadOnlySpan<float> XYTable
+        {
+            get { return _xyTable != null ? _xyTable.Data : null; }
         }
 
-        public (ByteMemory color, ByteMemory depth) LockLastFrame()
+        public (ReadOnlyMemory<byte> color,
+                ReadOnlyMemory<byte> depth) LockLastFrame()
         {
             // Try retrieving the last frame.
             if (_lockedFrame.capture == null)
@@ -46,10 +47,8 @@ namespace Akvfx
             // Return null if it failed to retrieve.
             if (_lockedFrame.capture == null) return (null, null);
 
-            return (
-                _lockedFrame.capture.Color.Memory,
-                _lockedFrame.depth.Memory
-            );
+            return (_lockedFrame.capture.Color.Memory,
+                    _lockedFrame.depth.Memory);
         }
 
         public void ReleaseLastFrame()
