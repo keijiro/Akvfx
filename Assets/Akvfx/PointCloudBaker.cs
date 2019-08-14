@@ -18,6 +18,7 @@ namespace Akvfx
         #region Internal objects
 
         ThreadedDriver _driver;
+        ComputeBuffer _xyTable;
         Material _material;
         (Texture2D color, Texture2D position) _temporaries;
 
@@ -43,11 +44,23 @@ namespace Akvfx
             if (_material != null) Destroy(_material);
             if (_temporaries.color != null) Destroy(_temporaries.color);
             if (_temporaries.position != null) Destroy(_temporaries.position);
+            _xyTable?.Dispose();
             _driver?.Dispose();
         }
 
         unsafe void Update()
         {
+            // Try initializing XY table if it's not ready.
+            if (_xyTable == null)
+            {
+                var data = _driver.XYTable;
+                if (data.IsEmpty) return; // Table is not ready.
+
+                // Allocate and initialize the XY table.
+                _xyTable = new ComputeBuffer(data.Length, sizeof(float));
+                _xyTable.SetData(data);
+            }
+
             // Try retrieving the last frame.
             var (cmem, pmem) = _driver.LockLastFrame();
             if (cmem.IsEmpty || pmem.IsEmpty) return;
