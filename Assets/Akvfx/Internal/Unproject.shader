@@ -7,6 +7,7 @@
     texture2D _ColorTexture;
     texture2D _DepthTexture;
     StructuredBuffer<float> _XYTable;
+    float _MaxDepth;
 
     void Vertex(
         float4 position : POSITION,
@@ -38,8 +39,8 @@
         int d0 = _DepthTexture[uint2(tx * 2 + 0, ty)] * 255;
         int d1 = _DepthTexture[uint2(tx * 2 + 1, ty)] * 255;
         float depth = (float)(d0 + (d1 << 8)) / 0x8000;
-        float mask = depth > 0;
-        float z = lerp(1, depth, mask);
+        float mask = depth > 0 && depth < _MaxDepth;
+        float z = lerp(_MaxDepth, depth, mask);
 
         // XY table lookup
         uint xy_i = (tx + ty * w) * 2;

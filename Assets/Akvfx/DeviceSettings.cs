@@ -21,6 +21,8 @@ namespace Akvfx
         [SerializeField] bool _enableBlc = false;
         [SerializeField] bool _powerIs60Hz = true;
 
+        [SerializeField, Range(0, 1)] float _maxDepth = 1;
+
         #endregion
 
         #region Public accessors
@@ -78,6 +80,11 @@ namespace Akvfx
         public bool powerIs60Hz {
             get { return _powerIs60Hz; }
             set { _powerIs60Hz = value; }
+        }
+
+        public float maxDepth {
+            get { return _maxDepth; }
+            set { _maxDepth = value; }
         }
 
         #endregion
