@@ -83,10 +83,16 @@ namespace Akvfx
                 settings.SharpnessDeviceValue, _sharpness, forceApply
             );
 
-            _gain = ApplyControl(
-                device, ColorControlCommand.Gain,
-                settings.GainDeviceValue, _gain, forceApply
-            );
+            // This is not documented, but the gain parameter can't update
+            // while the auto exposure is enabled. To delay updates, we do a
+            // bit tricky thing here.
+            if (_exposure < 0 || forceApply)
+                _gain = -1;
+            else
+                _gain = ApplyControl(
+                    device, ColorControlCommand.Gain,
+                    settings.GainDeviceValue, _gain, false
+                );
 
             _blc = ApplyControl(
                 device, ColorControlCommand.BacklightCompensation,
