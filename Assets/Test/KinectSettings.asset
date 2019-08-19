@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db4f3a1b0ecee8c47bb73cab867939bd, type: 3}
   m_Name: KinectSettings
   m_EditorClassIdentifier: 
-  _autoExposure: 0
+  _autoExposure: 1
   _exposure: 0.8
   _autoWhiteBalance: 1
   _whiteBalance: 0.3
