@@ -16,17 +16,8 @@
     }
   ],
   "dependencies": {
-    "com.unity.package-manager-ui": "2.2.0",
-    "com.unity.render-pipelines.high-definition": "6.9.1-preview",
-    "com.unity.ugui": "1.0.0",
-    "jp.keijiro.klak.motion": "1.0.0",
-    "org.nuget.system.memory": "4.5.3",
-    "com.unity.modules.animation": "1.0.0",
-    "com.unity.modules.imageconversion": "1.0.0",
-    "com.unity.modules.physics": "1.0.0",
-    "com.unity.modules.physics2d": "1.0.0",
-    "com.unity.modules.ui": "1.0.0",
-    "com.unity.modules.uielements": "1.0.0",
-    "com.unity.modules.vr": "1.0.0"
+    "jp.keijiro.kino.post-processing": "2.1.11",
+    "jp.keijiro.klak.motion": "1.0.1",
+    "org.nuget.system.memory": "4.5.3"
   }
 }
