@@ -15,13 +15,12 @@ using in [Visual Effect Graph].
 System Requirements
 -------------------
 
-- Unity 2019.2 or later
+- Unity 2019.3
 - Windows 10
 - Azure Kinect DK
 
 See also the [System Requirements] page of Azure Kinect DK. Note that Akvfx
-doesn't support Linux at the moment (due to lack of beta binaries on the
-Linux package repository).
+doesn't support Linux at the moment.
 
 [System Requirements]:
     https://docs.microsoft.com/en-us/azure/kinect-dk/system-requirements
