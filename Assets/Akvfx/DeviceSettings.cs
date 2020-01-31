@@ -93,8 +93,7 @@ namespace Akvfx
 
         internal int ExposureDeviceValue { get {
             if (_autoExposure) return -1;
-            var exp = Mathf.Pow(_exposure, 8);
-            return (int)Mathf.Lerp(488.0f, 1000000.0f, exp);
+            return (int)(Mathf.Lerp(500.0f, 18000.0f, _exposure));
         } }
 
         internal int WhiteBalanceDeviceValue { get {
