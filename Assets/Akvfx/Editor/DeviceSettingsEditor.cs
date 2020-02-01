@@ -62,6 +62,7 @@ namespace Akvfx
             {
                 EditorGUI.indentLevel++;
                 EditorGUILayout.PropertyField(_exposure);
+                EditorGUILayout.PropertyField(_gain);
                 EditorGUI.indentLevel--;
             }
 
@@ -78,7 +79,6 @@ namespace Akvfx
             EditorGUILayout.PropertyField(_contrast);
             EditorGUILayout.PropertyField(_saturation);
             EditorGUILayout.PropertyField(_sharpness);
-            EditorGUILayout.PropertyField(_gain);
 
             EditorGUILayout.PropertyField(_enableBlc, _labels.enableBlc);
             EditorGUILayout.PropertyField(_powerIs60Hz, _labels.powerIs60Hz);

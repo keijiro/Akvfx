@@ -7,10 +7,10 @@ namespace Akvfx
         #region Editable fields
 
         [SerializeField] bool _autoExposure = true;
-        [SerializeField, Range(0, 1)] float _exposure = 0.5f;
+        [SerializeField, Range(-11, 1)] int _exposure = -5;
 
         [SerializeField] bool _autoWhiteBalance = true;
-        [SerializeField, Range(0, 1)] float _whiteBalance = 0.5f;
+        [SerializeField, Range(2500, 10000)] float _whiteBalance = 3200;
 
         [SerializeField, Range(0, 1)] float _brightness = 0.5f;
         [SerializeField, Range(0, 1)] float _contrast = 0.5f;
@@ -32,7 +32,7 @@ namespace Akvfx
             set { _autoExposure = value; }
         }
 
-        public float exposure {
+        public int exposure {
             get { return _exposure; }
             set { _exposure = value; }
         }
@@ -93,13 +93,13 @@ namespace Akvfx
 
         internal int ExposureDeviceValue { get {
             if (_autoExposure) return -1;
-            return (int)(Mathf.Lerp(500.0f, 18000.0f, _exposure));
+            return (int)(Mathf.Pow(2, _exposure) * 1000 * 1000);
         } }
 
         internal int WhiteBalanceDeviceValue { get {
             if (_autoWhiteBalance) return -1;
-            var x = (int)Mathf.Lerp(2500, 10000, _whiteBalance);
-            return x - x % 10; // Should be divisible by 10.
+            // Should be divisible by 10.
+            return (int)(_whiteBalance / 10) * 10;
         } }
 
         internal int BrightnessDeviceValue { get {
