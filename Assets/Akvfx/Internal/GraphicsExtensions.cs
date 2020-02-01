@@ -22,17 +22,6 @@ namespace Akvfx
         static RenderBuffer [] _target2 = new RenderBuffer[2];
     }
 
-    static class Texture2DExtensions
-    {
-        // LoadRawTextureData with ReadOnlySpan
-        public unsafe static void LoadRawTextureData
-            (this Texture2D texture, ReadOnlySpan<byte> data)
-        {
-            fixed (byte* pData = &data.GetPinnableReference())
-                texture.LoadRawTextureData((IntPtr)pData, data.Length);
-        }
-    }
-
     static class ComputeBufferExtensions
     {
         // SetData with ReadOnlySpan

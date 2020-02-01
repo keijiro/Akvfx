@@ -19,7 +19,20 @@ namespace Akvfx
         ThreadedDriver _driver;
         Material _material;
         ComputeBuffer _xyTable;
-        (Texture2D color, Texture2D depth) _temporaries;
+        ComputeBuffer _colorBuffer;
+        ComputeBuffer _depthBuffer;
+
+        #endregion
+
+        #region Shader property IDs
+
+        static class ID
+        {
+            public static readonly int ColorBuffer = Shader.PropertyToID("_ColorBuffer");
+            public static readonly int DepthBuffer = Shader.PropertyToID("_DepthBuffer");
+            public static readonly int XYTable     = Shader.PropertyToID("_XYTable");
+            public static readonly int MaxDepth    = Shader.PropertyToID("_MaxDepth");
+        }
 
         #endregion
 
@@ -32,18 +45,16 @@ namespace Akvfx
 
             // Temporary objects for convertion shader
             _material = new Material(_shader);
-            _temporaries = (
-                new Texture2D(2048, 1536, GraphicsFormat.B8G8R8A8_SRGB, 0),
-                new Texture2D(2048 * 2, 1536, GraphicsFormat.R8_UNorm, 0)
-            );
+            _colorBuffer = new ComputeBuffer(2048 * 1536, 4);
+            _depthBuffer = new ComputeBuffer(2048 * 1536 / 2, 4);
         }
 
         void OnDestroy()
         {
             if (_material != null) Destroy(_material);
             _xyTable?.Dispose();
-            if (_temporaries.color != null) Destroy(_temporaries.color);
-            if (_temporaries.depth != null) Destroy(_temporaries.depth);
+            _colorBuffer?.Dispose();
+            _depthBuffer?.Dispose();
             _driver?.Dispose();
         }
 
@@ -66,20 +77,19 @@ namespace Akvfx
             var (color, depth) = _driver.LockLastFrame();
             if (color.IsEmpty || depth.IsEmpty) return;
 
-            // Load the frame data into the temporary textures.
-            _temporaries.color.LoadRawTextureData(color.Span);
-            _temporaries.depth.LoadRawTextureData(depth.Span);
-            _temporaries.color.Apply();
-            _temporaries.depth.Apply();
+            // Load the frame data into the compute buffers.
+            _colorBuffer.SetData(color.Span);
+            _depthBuffer.SetData(depth.Span);
 
             // We don't need the last frame any more.
             _driver.ReleaseLastFrame();
 
             // Invoke the unprojection shader.
-            _material.SetTexture("_ColorTexture", _temporaries.color);
-            _material.SetTexture("_DepthTexture", _temporaries.depth);
-            _material.SetBuffer("_XYTable", _xyTable);
-            _material.SetFloat("_MaxDepth", _deviceSettings.maxDepth);
+            _material.SetBuffer(ID.ColorBuffer, _colorBuffer);
+            _material.SetBuffer(ID.DepthBuffer, _depthBuffer);
+            _material.SetBuffer(ID.XYTable, _xyTable);
+            _material.SetFloat(ID.MaxDepth, _deviceSettings.maxDepth);
+
             var prevRT = RenderTexture.active;
             GraphicsExtensions.SetRenderTarget(_colorTexture, _positionTexture);
             Graphics.Blit(null, _material, 0);
