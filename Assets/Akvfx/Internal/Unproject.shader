@@ -22,23 +22,25 @@
     }
 
     void Vertex(
-        float4 position : POSITION,
-        out float4 positionOut : SV_Position,
-        inout float2 texCoord : TEXCOORD0
+        float4 vertex : POSITION,
+        float2 uv : TEXCOORD0,
+        out float4 outVertex : SV_Position,
+        inout float2 outUV : TEXCOORD0
     )
     {
-        positionOut = UnityObjectToClipPos(position);
+        outVertex = UnityObjectToClipPos(vertex);
+        outUV = uv;
     }
 
     void Fragment(
-        float4 position : SV_Position,
-        float2 texCoord : TEXCOORD0,
-        out float4 colorOut : SV_Target0,
-        out float4 positionOut : SV_Target1
+        float4 vertex : SV_Position,
+        float2 uv : TEXCOORD0,
+        out float4 outColor : SV_Target0,
+        out float4 outPosition : SV_Target1
     )
     {
         // Buffer index
-        uint idx = (uint)(texCoord.x * 2048) + (uint)(texCoord.y * 1536) * 2048;
+        uint idx = (uint)(uv.x * 640) + (uint)((1 - uv.y) * 576) * 640;
 
         // Color sample
         float3 color = GammaToLinearSpace(uint_to_float3(_ColorBuffer[idx]));
@@ -52,8 +54,8 @@
         float2 xy = float2(_XYTable[idx * 2], -_XYTable[idx * 2 + 1]);
 
         // MRT output write
-        colorOut = float4(color, mask);
-        positionOut = float4(xy * z, z, mask);
+        outColor = float4(color, mask);
+        outPosition = float4(xy * z, z, mask);
     }
 
     ENDCG

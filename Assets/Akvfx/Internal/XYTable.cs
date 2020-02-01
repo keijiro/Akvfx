@@ -50,8 +50,8 @@ namespace Akvfx
                     k4a_calibration_2d_to_3d(
                         ref calibration,
                         ref v2, 1,
-                        CalibrationDeviceType.Color,
-                        CalibrationDeviceType.Color,
+                        CalibrationDeviceType.Depth,
+                        CalibrationDeviceType.Depth,
                         out v3,
                         out isValid
                     );

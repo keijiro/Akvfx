@@ -47,14 +47,14 @@ namespace Akvfx
             // Return null if it failed to retrieve.
             if (_lockedFrame.capture == null) return (null, null);
 
-            return (_lockedFrame.capture.Color.Memory,
-                    _lockedFrame.depth.Memory);
+            return (_lockedFrame.color.Memory,
+                    _lockedFrame.capture.Depth.Memory);
         }
 
         public void ReleaseLastFrame()
         {
             _lockedFrame.capture?.Dispose();
-            _lockedFrame.depth?.Dispose();
+            _lockedFrame.color?.Dispose();
             _lockedFrame = (null, null);
         }
 
@@ -69,20 +69,20 @@ namespace Akvfx
 
         #region Capture queue
 
-        ConcurrentQueue<(Capture capture, Image depth)>
+        ConcurrentQueue<(Capture capture, Image color)>
             _queue = new ConcurrentQueue<(Capture, Image)>();
 
-        (Capture capture, Image depth) _lockedFrame;
+        (Capture capture, Image color) _lockedFrame;
 
         // Trim the queue to a specified count.
         void TrimQueue(int count)
         {
             while (_queue.Count > count)
             {
-                (Capture capture, Image depth) temp;
+                (Capture capture, Image color) temp;
                 _queue.TryDequeue(out temp);
                 temp.capture?.Dispose();
-                temp.depth?.Dispose();
+                temp.color?.Dispose();
             }
         }
 
@@ -113,7 +113,7 @@ namespace Akvfx
 
             // Construct XY table as a background task.
             Task.Run(() => {
-                _xyTable = new XYTable(device.GetCalibration(), 2048, 1536);
+                _xyTable = new XYTable(device.GetCalibration(), 640, 576);
             });
 
             // Set up the transformation object.
@@ -127,11 +127,11 @@ namespace Akvfx
                 // Get a frame capture.
                 var capture = device.GetCapture();
 
-                // Transform the depth image to the color perspective.
-                var depth = transformation.DepthImageToColorCamera(capture);
+                // Transform the color image to the depth perspective.
+                var color = transformation.ColorImageToDepthCamera(capture);
 
                 // Push the frame to the capture queue.
-                _queue.Enqueue((capture, depth));
+                _queue.Enqueue((capture, color));
 
                 // Remove old frames.
                 TrimQueue(1);

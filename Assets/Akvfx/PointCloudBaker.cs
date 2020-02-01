@@ -45,8 +45,8 @@ namespace Akvfx
 
             // Temporary objects for convertion shader
             _material = new Material(_shader);
-            _colorBuffer = new ComputeBuffer(2048 * 1536, 4);
-            _depthBuffer = new ComputeBuffer(2048 * 1536 / 2, 4);
+            _colorBuffer = new ComputeBuffer(640 * 576, 4);
+            _depthBuffer = new ComputeBuffer(640 * 576 / 2, 4);
         }
 
         void OnDestroy()
