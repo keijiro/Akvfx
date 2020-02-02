@@ -92,10 +92,10 @@ MonoBehaviour:
   - title: Color Sample
     position:
       serializedVersion: 2
-      x: -24
-      y: 1046
-      width: 512
-      height: 185
+      x: -288
+      y: 1059
+      width: 557
+      height: 182
     contents:
     - model: {fileID: 8926484042661614591}
       id: 0
@@ -109,10 +109,10 @@ MonoBehaviour:
   - title: Position Sample
     position:
       serializedVersion: 2
-      x: -18
-      y: 646
-      width: 511
-      height: 190
+      x: -186
+      y: 659
+      width: 552
+      height: 181
     contents:
     - model: {fileID: 8926484042661614580}
       id: 0
@@ -126,10 +126,10 @@ MonoBehaviour:
   - title: Position Sample
     position:
       serializedVersion: 2
-      x: -26
-      y: 847
-      width: 511
-      height: 190
+      x: -198
+      y: 859
+      width: 568
+      height: 181
     contents:
     - model: {fileID: 8926484042661614976}
       id: 0
@@ -143,10 +143,10 @@ MonoBehaviour:
   - title: Color Sample
     position:
       serializedVersion: 2
-      x: -26
-      y: 1242
-      width: 512
-      height: 185
+      x: -289
+      y: 1248
+      width: 554
+      height: 179
     contents:
     - model: {fileID: 8926484042661615015}
       id: 0
@@ -160,10 +160,10 @@ MonoBehaviour:
   - title: Distance Filter
     position:
       serializedVersion: 2
-      x: -423
-      y: 1443
-      width: 929
-      height: 201
+      x: -687
+      y: 1452
+      width: 1030
+      height: 200
     contents:
     - model: {fileID: 8926484042661615069}
       id: 0
@@ -183,10 +183,10 @@ MonoBehaviour:
   - title: Noise UV
     position:
       serializedVersion: 2
-      x: -30
-      y: 291
-      width: 519
-      height: 348
+      x: -211
+      y: 283
+      width: 577
+      height: 359
     contents:
     - model: {fileID: 8926484042661614948}
       id: 0
@@ -200,10 +200,10 @@ MonoBehaviour:
   - title: Trace Line
     position:
       serializedVersion: 2
-      x: 0
-      y: 0
-      width: 100
-      height: 100
+      x: -1005
+      y: 1707
+      width: 1353
+      height: 332
     contents:
     - model: {fileID: 8926484042661615154}
       id: 0
@@ -231,10 +231,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: -738
+    x: -1005
     y: -190
-    width: 1824
-    height: 2428
+    width: 2108
+    height: 2229
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -849,29 +849,29 @@ VisualEffectResource:
       uniform_b, (float)-0.860000014);\n\t\t\t    float4 tmp_v = GeneratePerlinNoise(tmp_s,
       float3(1, 0.5, 2).x, (int)1, float3(1, 0.5, 2).y, float3(1, 0.5, 2).z);\n\t\t\t   
       float tmp_w = tmp_v[0];\n\t\t\t    float tmp_y = tmp_w - (float)-1;\n\t\t\t   
-      float tmp_ba = tmp_y / (float)2;\n\t\t\t    float tmp_bc = tmp_ba * (float)0.799999952;\n\t\t\t   
-      float tmp_bd = (float)0.100000001 + tmp_bc;\n\t\t\t    float3 tmp_bg = float3(uniform_b,
-      tmp_q, (float)5.96999979);\n\t\t\t    float4 tmp_bi = GeneratePerlinNoise(tmp_bg,
+      float tmp_ba = tmp_y / (float)2;\n\t\t\t    float tmp_bb = tmp_ba * (float)2;\n\t\t\t   
+      float tmp_bc = (float)-0.5 + tmp_bb;\n\t\t\t    float3 tmp_be = float3(uniform_b,
+      tmp_q, (float)5.96999979);\n\t\t\t    float4 tmp_bg = GeneratePerlinNoise(tmp_be,
       float3(0.300000012, 0.5, 2).x, (int)1, float3(0.300000012, 0.5, 2).y, float3(0.300000012,
-      0.5, 2).z);\n\t\t\t    float tmp_bj = tmp_bi[0];\n\t\t\t    float tmp_bk =
-      tmp_bj - (float)-1;\n\t\t\t    float tmp_bl = tmp_bk / (float)2;\n\t\t\t   
-      float tmp_bn = tmp_bl * (float)1.4000001;\n\t\t\t    float tmp_bo = (float)-0.200000003
-      + tmp_bn;\n\t\t\t    float2 tmp_bp = float2(tmp_bd, tmp_bo);\n\t\t\t    SetCustomAttribute_B23F5E21(
-      /*inout */attributes.UV1, tmp_bp);\n\t\t\t}\n\t\t\t{\n\t\t\t    uint tmp_p
+      0.5, 2).z);\n\t\t\t    float tmp_bh = tmp_bg[0];\n\t\t\t    float tmp_bi =
+      tmp_bh - (float)-1;\n\t\t\t    float tmp_bj = tmp_bi / (float)2;\n\t\t\t   
+      float tmp_bk = tmp_bj * (float)2;\n\t\t\t    float tmp_bl = (float)-0.5 + tmp_bk;\n\t\t\t   
+      float2 tmp_bm = float2(tmp_bc, tmp_bl);\n\t\t\t    SetCustomAttribute_B23F5E21(
+      /*inout */attributes.UV1, tmp_bm);\n\t\t\t}\n\t\t\t{\n\t\t\t    uint tmp_p
       = attributes.particleId + (uint)1;\n\t\t\t    float tmp_q = (float)tmp_p;\n\t\t\t   
       float tmp_s = tmp_q * (float)0.0399999991;\n\t\t\t    float3 tmp_u = float3(tmp_s,
       uniform_b, (float)-0.860000014);\n\t\t\t    float4 tmp_x = GeneratePerlinNoise(tmp_u,
       float3(1, 0.5, 2).x, (int)1, float3(1, 0.5, 2).y, float3(1, 0.5, 2).z);\n\t\t\t   
       float tmp_y = tmp_x[0];\n\t\t\t    float tmp_ba = tmp_y - (float)-1;\n\t\t\t   
-      float tmp_bc = tmp_ba / (float)2;\n\t\t\t    float tmp_be = tmp_bc * (float)0.799999952;\n\t\t\t   
-      float tmp_bf = (float)0.100000001 + tmp_be;\n\t\t\t    float3 tmp_bi = float3(uniform_b,
-      tmp_s, (float)5.96999979);\n\t\t\t    float4 tmp_bk = GeneratePerlinNoise(tmp_bi,
+      float tmp_bc = tmp_ba / (float)2;\n\t\t\t    float tmp_bd = tmp_bc * (float)2;\n\t\t\t   
+      float tmp_be = (float)-0.5 + tmp_bd;\n\t\t\t    float3 tmp_bg = float3(uniform_b,
+      tmp_s, (float)5.96999979);\n\t\t\t    float4 tmp_bi = GeneratePerlinNoise(tmp_bg,
       float3(0.300000012, 0.5, 2).x, (int)1, float3(0.300000012, 0.5, 2).y, float3(0.300000012,
-      0.5, 2).z);\n\t\t\t    float tmp_bl = tmp_bk[0];\n\t\t\t    float tmp_bm =
-      tmp_bl - (float)-1;\n\t\t\t    float tmp_bn = tmp_bm / (float)2;\n\t\t\t   
-      float tmp_bp = tmp_bn * (float)1.4000001;\n\t\t\t    float tmp_bq = (float)-0.200000003
-      + tmp_bp;\n\t\t\t    float2 tmp_br = float2(tmp_bf, tmp_bq);\n\t\t\t    SetCustomAttribute_B5FA1F34(
-      /*inout */attributes.UV2, tmp_br);\n\t\t\t}\n\t\t\t{\n\t\t\t    float4 tmp_o
+      0.5, 2).z);\n\t\t\t    float tmp_bj = tmp_bi[0];\n\t\t\t    float tmp_bk =
+      tmp_bj - (float)-1;\n\t\t\t    float tmp_bl = tmp_bk / (float)2;\n\t\t\t   
+      float tmp_bm = tmp_bl * (float)2;\n\t\t\t    float tmp_bn = (float)-0.5 + tmp_bm;\n\t\t\t   
+      float2 tmp_bo = float2(tmp_be, tmp_bn);\n\t\t\t    SetCustomAttribute_B5FA1F34(
+      /*inout */attributes.UV2, tmp_bo);\n\t\t\t}\n\t\t\t{\n\t\t\t    float4 tmp_o
       = SampleTexture(VFX_SAMPLER(texture_b),attributes.UV1,(float)0);\n\t\t\t   
       float tmp_p = tmp_o[0];\n\t\t\t    float tmp_q = tmp_o[1];\n\t\t\t    float
       tmp_r = tmp_o[2];\n\t\t\t    float3 tmp_s = float3(tmp_p, tmp_q, tmp_r);\n\t\t\t   
@@ -896,24 +896,22 @@ VisualEffectResource:
       float3 tmp_r = tmp_q * tmp_q;\n\t\t\t    float tmp_s = tmp_r[2];\n\t\t\t   
       float tmp_t = tmp_r[1];\n\t\t\t    float tmp_u = tmp_s + tmp_t;\n\t\t\t   
       float tmp_v = tmp_r[0];\n\t\t\t    float tmp_w = tmp_u + tmp_v;\n\t\t\t   
-      float tmp_y = pow(tmp_w, (float)0.5);\n\t\t\t    float tmp_ba = tmp_y - (float)0.0199999996;\n\t\t\t   
-      float tmp_bc = tmp_ba / (float)0.0900000036;\n\t\t\t    float tmp_be = max(tmp_bc,
-      (float)0);\n\t\t\t    float tmp_bf = min(tmp_be, (float)1);\n\t\t\t    float
-      tmp_bg = (float)2 * tmp_bf;\n\t\t\t    float tmp_bh = (float)3 - tmp_bg;\n\t\t\t   
-      float tmp_bi = tmp_bh * tmp_bf;\n\t\t\t    float tmp_bj = tmp_bi * tmp_bf;\n\t\t\t   
-      float tmp_bk = (float)1 - tmp_bj;\n\t\t\t    SetAttribute_C7757136( /*inout
-      */attributes.alpha, tmp_bk);\n\t\t\t}\n\t\t\t{\n\t\t\t    float tmp_n = (float)attributes.particleId;\n\t\t\t   
+      float tmp_y = pow(tmp_w, (float)0.5);\n\t\t\t    float tmp_ba = tmp_y - (float)0.100000001;\n\t\t\t   
+      float tmp_bb = tmp_ba / (float)0.100000001;\n\t\t\t    float tmp_bc = saturate(tmp_bb);\n\t\t\t   
+      float tmp_bd = (float)2 * tmp_bc;\n\t\t\t    float tmp_be = (float)3 - tmp_bd;\n\t\t\t   
+      float tmp_bf = tmp_be * tmp_bc;\n\t\t\t    float tmp_bg = tmp_bf * tmp_bc;\n\t\t\t   
+      float tmp_bh = (float)1 - tmp_bg;\n\t\t\t    SetAttribute_C7757136( /*inout
+      */attributes.alpha, tmp_bh);\n\t\t\t}\n\t\t\t{\n\t\t\t    float tmp_n = (float)attributes.particleId;\n\t\t\t   
       float tmp_p = tmp_n * (float)0.0317000002;\n\t\t\t    float tmp_q = tmp_p +
       uniform_d;\n\t\t\t    float2 tmp_t = GeneratePerlinNoise(tmp_q, float3(1, 0.5,
       2).x, (int)1, float3(1, 0.5, 2).y, float3(1, 0.5, 2).z);\n\t\t\t    float tmp_u
       = tmp_t[0];\n\t\t\t    float tmp_w = tmp_u - (float)-1;\n\t\t\t    float tmp_y
-      = tmp_w / (float)2;\n\t\t\t    float tmp_ba = max(tmp_y, (float)0);\n\t\t\t   
-      float tmp_bc = min(tmp_ba, (float)1);\n\t\t\t    float4 tmp_bd = SampleGradient(uniform_c,tmp_bc);\n\t\t\t   
-      float tmp_be = tmp_bd[0];\n\t\t\t    float tmp_bf = tmp_bd[1];\n\t\t\t    float
-      tmp_bg = tmp_bd[2];\n\t\t\t    float3 tmp_bh = float3(tmp_be, tmp_bf, tmp_bg);\n\t\t\t   
-      SetAttribute_FA15ADAA( /*inout */attributes.color, tmp_bh);\n\t\t\t}\n\t\t\t\n\r\n\r\n\t\t\tif
-      (attributes.alive)\r\n\t\t\t{\r\n\t\t\t\tattributeBuffer.Store2((index * 0x4
-      + 0x0) << 2,asuint(attributes.UV1));\n\t\t\t\tattributeBuffer.Store2((index
+      = tmp_w / (float)2;\n\t\t\t    float tmp_z = saturate(tmp_y);\n\t\t\t    float4
+      tmp_ba = SampleGradient(uniform_c,tmp_z);\n\t\t\t    float tmp_bb = tmp_ba[0];\n\t\t\t   
+      float tmp_bc = tmp_ba[1];\n\t\t\t    float tmp_bd = tmp_ba[2];\n\t\t\t    float3
+      tmp_be = float3(tmp_bb, tmp_bc, tmp_bd);\n\t\t\t    SetAttribute_FA15ADAA(
+      /*inout */attributes.color, tmp_be);\n\t\t\t}\n\t\t\t\n\r\n\r\n\t\t\tif (attributes.alive)\r\n\t\t\t{\r\n\t\t\t\tattributeBuffer.Store2((index
+      * 0x4 + 0x0) << 2,asuint(attributes.UV1));\n\t\t\t\tattributeBuffer.Store2((index
       * 0x4 + 0x2) << 2,asuint(attributes.UV2));\n\t\t\t\tattributeBuffer.Store3((index
       * 0xC + 0x30E00) << 2,asuint(attributes.position));\n\t\t\t\tattributeBuffer.Store3((index
       * 0xC + 0x30E04) << 2,asuint(attributes.targetPosition));\n\t\t\t\tattributeBuffer.Store3((index
@@ -946,28 +944,28 @@ VisualEffectResource:
       uniform_b, (float)-0.860000014);\n\t\t    float4 tmp_v = GeneratePerlinNoise(tmp_s,
       float3(1, 0.5, 2).x, (int)1, float3(1, 0.5, 2).y, float3(1, 0.5, 2).z);\n\t\t   
       float tmp_w = tmp_v[0];\n\t\t    float tmp_y = tmp_w - (float)-1;\n\t\t   
-      float tmp_ba = tmp_y / (float)2;\n\t\t    float tmp_bc = tmp_ba * (float)0.799999952;\n\t\t   
-      float tmp_bd = (float)0.100000001 + tmp_bc;\n\t\t    float3 tmp_bg = float3(uniform_b,
-      tmp_q, (float)5.96999979);\n\t\t    float4 tmp_bi = GeneratePerlinNoise(tmp_bg,
+      float tmp_ba = tmp_y / (float)2;\n\t\t    float tmp_bb = tmp_ba * (float)2;\n\t\t   
+      float tmp_bc = (float)-0.5 + tmp_bb;\n\t\t    float3 tmp_be = float3(uniform_b,
+      tmp_q, (float)5.96999979);\n\t\t    float4 tmp_bg = GeneratePerlinNoise(tmp_be,
       float3(0.300000012, 0.5, 2).x, (int)1, float3(0.300000012, 0.5, 2).y, float3(0.300000012,
-      0.5, 2).z);\n\t\t    float tmp_bj = tmp_bi[0];\n\t\t    float tmp_bk = tmp_bj
-      - (float)-1;\n\t\t    float tmp_bl = tmp_bk / (float)2;\n\t\t    float tmp_bn
-      = tmp_bl * (float)1.4000001;\n\t\t    float tmp_bo = (float)-0.200000003 +
-      tmp_bn;\n\t\t    float2 tmp_bp = float2(tmp_bd, tmp_bo);\n\t\t    SetCustomAttribute_B23F5E21(
-      /*inout */attributes.UV1, tmp_bp);\n\t\t}\n\t\t{\n\t\t    uint tmp_p = attributes.particleId
+      0.5, 2).z);\n\t\t    float tmp_bh = tmp_bg[0];\n\t\t    float tmp_bi = tmp_bh
+      - (float)-1;\n\t\t    float tmp_bj = tmp_bi / (float)2;\n\t\t    float tmp_bk
+      = tmp_bj * (float)2;\n\t\t    float tmp_bl = (float)-0.5 + tmp_bk;\n\t\t   
+      float2 tmp_bm = float2(tmp_bc, tmp_bl);\n\t\t    SetCustomAttribute_B23F5E21(
+      /*inout */attributes.UV1, tmp_bm);\n\t\t}\n\t\t{\n\t\t    uint tmp_p = attributes.particleId
       + (uint)1;\n\t\t    float tmp_q = (float)tmp_p;\n\t\t    float tmp_s = tmp_q
       * (float)0.0399999991;\n\t\t    float3 tmp_u = float3(tmp_s, uniform_b, (float)-0.860000014);\n\t\t   
       float4 tmp_x = GeneratePerlinNoise(tmp_u, float3(1, 0.5, 2).x, (int)1, float3(1,
       0.5, 2).y, float3(1, 0.5, 2).z);\n\t\t    float tmp_y = tmp_x[0];\n\t\t   
       float tmp_ba = tmp_y - (float)-1;\n\t\t    float tmp_bc = tmp_ba / (float)2;\n\t\t   
-      float tmp_be = tmp_bc * (float)0.799999952;\n\t\t    float tmp_bf = (float)0.100000001
-      + tmp_be;\n\t\t    float3 tmp_bi = float3(uniform_b, tmp_s, (float)5.96999979);\n\t\t   
-      float4 tmp_bk = GeneratePerlinNoise(tmp_bi, float3(0.300000012, 0.5, 2).x,
-      (int)1, float3(0.300000012, 0.5, 2).y, float3(0.300000012, 0.5, 2).z);\n\t\t   
-      float tmp_bl = tmp_bk[0];\n\t\t    float tmp_bm = tmp_bl - (float)-1;\n\t\t   
-      float tmp_bn = tmp_bm / (float)2;\n\t\t    float tmp_bp = tmp_bn * (float)1.4000001;\n\t\t   
-      float tmp_bq = (float)-0.200000003 + tmp_bp;\n\t\t    float2 tmp_br = float2(tmp_bf,
-      tmp_bq);\n\t\t    SetCustomAttribute_B5FA1F34( /*inout */attributes.UV2, tmp_br);\n\t\t}\n\t\t{\n\t\t   
+      float tmp_bd = tmp_bc * (float)2;\n\t\t    float tmp_be = (float)-0.5 + tmp_bd;\n\t\t   
+      float3 tmp_bg = float3(uniform_b, tmp_s, (float)5.96999979);\n\t\t    float4
+      tmp_bi = GeneratePerlinNoise(tmp_bg, float3(0.300000012, 0.5, 2).x, (int)1,
+      float3(0.300000012, 0.5, 2).y, float3(0.300000012, 0.5, 2).z);\n\t\t    float
+      tmp_bj = tmp_bi[0];\n\t\t    float tmp_bk = tmp_bj - (float)-1;\n\t\t    float
+      tmp_bl = tmp_bk / (float)2;\n\t\t    float tmp_bm = tmp_bl * (float)2;\n\t\t   
+      float tmp_bn = (float)-0.5 + tmp_bm;\n\t\t    float2 tmp_bo = float2(tmp_be,
+      tmp_bn);\n\t\t    SetCustomAttribute_B5FA1F34( /*inout */attributes.UV2, tmp_bo);\n\t\t}\n\t\t{\n\t\t   
       float4 tmp_o = SampleTexture(VFX_SAMPLER(texture_b),attributes.UV1,(float)0);\n\t\t   
       float tmp_p = tmp_o[0];\n\t\t    float tmp_q = tmp_o[1];\n\t\t    float tmp_r
       = tmp_o[2];\n\t\t    float3 tmp_s = float3(tmp_p, tmp_q, tmp_r);\n\t\t    SetAttribute_CAC29747(
@@ -991,22 +989,20 @@ VisualEffectResource:
       tmp_r = tmp_q * tmp_q;\n\t\t    float tmp_s = tmp_r[2];\n\t\t    float tmp_t
       = tmp_r[1];\n\t\t    float tmp_u = tmp_s + tmp_t;\n\t\t    float tmp_v = tmp_r[0];\n\t\t   
       float tmp_w = tmp_u + tmp_v;\n\t\t    float tmp_y = pow(tmp_w, (float)0.5);\n\t\t   
-      float tmp_ba = tmp_y - (float)0.0199999996;\n\t\t    float tmp_bc = tmp_ba
-      / (float)0.0900000036;\n\t\t    float tmp_be = max(tmp_bc, (float)0);\n\t\t   
-      float tmp_bf = min(tmp_be, (float)1);\n\t\t    float tmp_bg = (float)2 * tmp_bf;\n\t\t   
-      float tmp_bh = (float)3 - tmp_bg;\n\t\t    float tmp_bi = tmp_bh * tmp_bf;\n\t\t   
-      float tmp_bj = tmp_bi * tmp_bf;\n\t\t    float tmp_bk = (float)1 - tmp_bj;\n\t\t   
-      SetAttribute_C7757136( /*inout */attributes.alpha, tmp_bk);\n\t\t}\n\t\t{\n\t\t   
-      float tmp_n = (float)attributes.particleId;\n\t\t    float tmp_p = tmp_n *
-      (float)0.0317000002;\n\t\t    float tmp_q = tmp_p + uniform_d;\n\t\t    float2
-      tmp_t = GeneratePerlinNoise(tmp_q, float3(1, 0.5, 2).x, (int)1, float3(1, 0.5,
-      2).y, float3(1, 0.5, 2).z);\n\t\t    float tmp_u = tmp_t[0];\n\t\t    float
-      tmp_w = tmp_u - (float)-1;\n\t\t    float tmp_y = tmp_w / (float)2;\n\t\t   
-      float tmp_ba = max(tmp_y, (float)0);\n\t\t    float tmp_bc = min(tmp_ba, (float)1);\n\t\t   
-      float4 tmp_bd = SampleGradient(uniform_c,tmp_bc);\n\t\t    float tmp_be = tmp_bd[0];\n\t\t   
-      float tmp_bf = tmp_bd[1];\n\t\t    float tmp_bg = tmp_bd[2];\n\t\t    float3
-      tmp_bh = float3(tmp_be, tmp_bf, tmp_bg);\n\t\t    SetAttribute_FA15ADAA( /*inout
-      */attributes.color, tmp_bh);\n\t\t}\n\t\t\n\r\n\t\tattributeBuffer.Store2((index
+      float tmp_ba = tmp_y - (float)0.100000001;\n\t\t    float tmp_bb = tmp_ba /
+      (float)0.100000001;\n\t\t    float tmp_bc = saturate(tmp_bb);\n\t\t    float
+      tmp_bd = (float)2 * tmp_bc;\n\t\t    float tmp_be = (float)3 - tmp_bd;\n\t\t   
+      float tmp_bf = tmp_be * tmp_bc;\n\t\t    float tmp_bg = tmp_bf * tmp_bc;\n\t\t   
+      float tmp_bh = (float)1 - tmp_bg;\n\t\t    SetAttribute_C7757136( /*inout */attributes.alpha,
+      tmp_bh);\n\t\t}\n\t\t{\n\t\t    float tmp_n = (float)attributes.particleId;\n\t\t   
+      float tmp_p = tmp_n * (float)0.0317000002;\n\t\t    float tmp_q = tmp_p + uniform_d;\n\t\t   
+      float2 tmp_t = GeneratePerlinNoise(tmp_q, float3(1, 0.5, 2).x, (int)1, float3(1,
+      0.5, 2).y, float3(1, 0.5, 2).z);\n\t\t    float tmp_u = tmp_t[0];\n\t\t   
+      float tmp_w = tmp_u - (float)-1;\n\t\t    float tmp_y = tmp_w / (float)2;\n\t\t   
+      float tmp_z = saturate(tmp_y);\n\t\t    float4 tmp_ba = SampleGradient(uniform_c,tmp_z);\n\t\t   
+      float tmp_bb = tmp_ba[0];\n\t\t    float tmp_bc = tmp_ba[1];\n\t\t    float
+      tmp_bd = tmp_ba[2];\n\t\t    float3 tmp_be = float3(tmp_bb, tmp_bc, tmp_bd);\n\t\t   
+      SetAttribute_FA15ADAA( /*inout */attributes.color, tmp_be);\n\t\t}\n\t\t\n\r\n\t\tattributeBuffer.Store2((index
       * 0x4 + 0x0) << 2,asuint(attributes.UV1));\n\t\tattributeBuffer.Store2((index
       * 0x4 + 0x2) << 2,asuint(attributes.UV2));\n\t\tattributeBuffer.Store3((index
       * 0xC + 0x30E00) << 2,asuint(attributes.position));\n\t\tattributeBuffer.Store3((index
@@ -1230,7 +1226,7 @@ VisualEffectResource:
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 1
+        data[3]: 6
       - op: 1
         valueIndex: 1
         data[0]: -1
@@ -1242,17 +1238,17 @@ VisualEffectResource:
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 6
+        data[3]: 1
       - op: 7
         valueIndex: 3
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: -1
-      - op: 26
+      - op: 1
         valueIndex: 4
-        data[0]: 3
-        data[1]: 0
+        data[0]: -1
+        data[1]: -1
         data[2]: -1
         data[3]: 1
       - op: 1
@@ -1261,12 +1257,12 @@ VisualEffectResource:
         data[1]: -1
         data[2]: -1
         data[3]: 1
-      - op: 1
+      - op: 26
         valueIndex: 6
-        data[0]: -1
-        data[1]: -1
+        data[0]: 3
+        data[1]: 1
         data[2]: -1
-        data[3]: 5
+        data[3]: 1
       - op: 1
         valueIndex: 7
         data[0]: -1
@@ -1290,7 +1286,7 @@ VisualEffectResource:
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 1
+        data[3]: 5
       - op: 1
         valueIndex: 13
         data[0]: -1
@@ -1302,19 +1298,19 @@ VisualEffectResource:
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 1
-      - op: 1
-        valueIndex: 15
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
-        data[3]: 1
-      - op: 1
-        valueIndex: 16
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
         data[3]: 3
+      - op: 1
+        valueIndex: 17
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 1
+      - op: 1
+        valueIndex: 18
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 7
       - op: 1
         valueIndex: 19
         data[0]: -1
@@ -1332,43 +1328,43 @@ VisualEffectResource:
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 7
-      - op: 1
-        valueIndex: 22
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
-        data[3]: 1
-      - op: 1
-        valueIndex: 23
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
-        data[3]: 1
-      - op: 1
-        valueIndex: 24
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
-        data[3]: 14
+        data[3]: 4
       - op: 1
         valueIndex: 25
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 4
+        data[3]: 1
+      - op: 1
+        valueIndex: 26
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 14
+      - op: 1
+        valueIndex: 27
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 7
       - op: 57
-        valueIndex: 29
-        data[0]: 20
+        valueIndex: 28
+        data[0]: 19
         data[1]: -1
         data[2]: -1
         data[3]: 0
+      - op: 1
+        valueIndex: 29
+        data[0]: -1
+        data[1]: -1
+        data[2]: -1
+        data[3]: 1
       - op: 1
         valueIndex: 30
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 7
+        data[3]: 1
       - op: 1
         valueIndex: 31
         data[0]: -1
@@ -1380,45 +1376,21 @@ VisualEffectResource:
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 1
-      - op: 1
-        valueIndex: 33
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
-        data[3]: 1
-      - op: 1
-        valueIndex: 34
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
-        data[3]: 1
+        data[3]: 3
       - op: 1
         valueIndex: 35
         data[0]: -1
         data[1]: -1
         data[2]: -1
-        data[3]: 1
-      - op: 1
-        valueIndex: 36
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
         data[3]: 3
       - op: 1
-        valueIndex: 39
-        data[0]: -1
-        data[1]: -1
-        data[2]: -1
-        data[3]: 3
-      - op: 1
-        valueIndex: 42
+        valueIndex: 38
         data[0]: -1
         data[1]: -1
         data[2]: -1
         data[3]: 2
       - op: 1
-        valueIndex: 44
+        valueIndex: 40
         data[0]: -1
         data[1]: -1
         data[2]: -1
@@ -1429,69 +1401,61 @@ VisualEffectResource:
     m_PropertySheet:
       m_Float:
         m_Array:
-        - m_ExpressionIndex: 0
-          m_Value: 5.14
         - m_ExpressionIndex: 1
+          m_Value: 5.14
+        - m_ExpressionIndex: 2
           m_Value: 0.0317
-        - m_ExpressionIndex: 5
+        - m_ExpressionIndex: 4
           m_Value: 0.5
-        - m_ExpressionIndex: 7
-          m_Value: 0.02
-        - m_ExpressionIndex: 8
+        - m_ExpressionIndex: 5
           m_Value: 0.04
-        - m_ExpressionIndex: 10
-          m_Value: 5.97
-        - m_ExpressionIndex: 11
-          m_Value: 0.09
-        - m_ExpressionIndex: 12
+        - m_ExpressionIndex: 7
+          m_Value: 0.1
+        - m_ExpressionIndex: 8
           m_Value: -0.86
+        - m_ExpressionIndex: 11
+          m_Value: 5.97
         - m_ExpressionIndex: 13
-          m_Value: -1
-        - m_ExpressionIndex: 15
           m_Value: 0
+        - m_ExpressionIndex: 15
+          m_Value: -1
         - m_ExpressionIndex: 16
           m_Value: 2
         - m_ExpressionIndex: 18
-          m_Value: 1
-        - m_ExpressionIndex: 19
           m_Value: 3
+        - m_ExpressionIndex: 22
+          m_Value: -0.5
+        - m_ExpressionIndex: 23
+          m_Value: 1
         - m_ExpressionIndex: 24
-          m_Value: 1.4000001
-        - m_ExpressionIndex: 25
-          m_Value: 0.79999995
-        - m_ExpressionIndex: 26
-          m_Value: -0.2
-        - m_ExpressionIndex: 27
-          m_Value: 0.1
-        - m_ExpressionIndex: 28
           m_Value: -0.3
       m_Vector2f:
         m_Array:
-        - m_ExpressionIndex: 31
+        - m_ExpressionIndex: 27
           m_Value: {x: 0, y: 0}
-        - m_ExpressionIndex: 32
+        - m_ExpressionIndex: 28
           m_Value: {x: 300000, y: 300000}
       m_Vector3f:
         m_Array:
         - m_ExpressionIndex: 9
           m_Value: {x: 1, y: 0.5, z: 2}
-        - m_ExpressionIndex: 14
+        - m_ExpressionIndex: 12
           m_Value: {x: 0.3, y: 0.5, z: 2}
-        - m_ExpressionIndex: 29
+        - m_ExpressionIndex: 25
           m_Value: {x: 10, y: 10, z: 10}
-        - m_ExpressionIndex: 30
+        - m_ExpressionIndex: 26
           m_Value: {x: 0, y: 0, z: 0}
       m_Vector4f:
         m_Array:
-        - m_ExpressionIndex: 21
+        - m_ExpressionIndex: 17
           m_Value: {x: 0.5, y: 0.5, z: 0.5, w: 0.5}
       m_Uint:
         m_Array:
-        - m_ExpressionIndex: 2
+        - m_ExpressionIndex: 0
           m_Value: 1
       m_Int:
         m_Array:
-        - m_ExpressionIndex: 6
+        - m_ExpressionIndex: 10
           m_Value: 1
       m_Matrix4x4f:
         m_Array: []
@@ -1499,7 +1463,7 @@ VisualEffectResource:
         m_Array: []
       m_Gradient:
         m_Array:
-        - m_ExpressionIndex: 20
+        - m_ExpressionIndex: 19
           m_Value:
             serializedVersion: 2
             key0: {r: 0, g: 0, b: 0, a: 1}
@@ -1531,19 +1495,19 @@ VisualEffectResource:
             m_NumAlphaKeys: 2
       m_NamedObject:
         m_Array:
-        - m_ExpressionIndex: 17
+        - m_ExpressionIndex: 14
           m_Value: {fileID: 8400000, guid: 32764d5a0342b1440828e4a41b370931, type: 2}
-        - m_ExpressionIndex: 23
+        - m_ExpressionIndex: 20
           m_Value: {fileID: 8400000, guid: fcd8c3cd4e775064fb379815be58d5e8, type: 2}
       m_Bool:
         m_Array: []
     m_ExposedExpressions:
     - nameId: Base Height
-      index: 28
+      index: 24
     - nameId: Color Map
-      index: 17
+      index: 14
     - nameId: Position Map
-      index: 23
+      index: 20
     m_Buffers:
     - type: 1
       size: 850816
@@ -1661,9 +1625,9 @@ VisualEffectResource:
       temporaryBuffers: []
       values:
       - nameId: Count
-        index: 32
+        index: 28
       - nameId: Delay
-        index: 31
+        index: 27
       params: []
       processor: {fileID: 0}
       shaderSourceIndex: -1
@@ -1680,9 +1644,9 @@ VisualEffectResource:
       index: 1
     values:
     - nameId: bounds_center
-      index: 30
+      index: 26
     - nameId: bounds_size
-      index: 29
+      index: 25
     tasks:
     - type: 536870912
       buffers:
@@ -1694,9 +1658,9 @@ VisualEffectResource:
       values: []
       params:
       - nameId: bounds_center
-        index: 30
+        index: 26
       - nameId: bounds_size
-        index: 29
+        index: 25
       processor: {fileID: 0}
       shaderSourceIndex: 0
     - type: 805306368
@@ -1708,13 +1672,13 @@ VisualEffectResource:
       - nameId: uniform_b
         index: 3
       - nameId: uniform_c
-        index: 22
+        index: 21
       - nameId: uniform_d
-        index: 4
+        index: 6
       - nameId: texture_b
-        index: 23
+        index: 20
       - nameId: texture_c
-        index: 17
+        index: 14
       params: []
       processor: {fileID: 0}
       shaderSourceIndex: 1
@@ -1860,7 +1824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 195, y: 710}
+  m_UIPosition: {x: 50, y: 716}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -2147,7 +2111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 190, y: 1112}
+  m_UIPosition: {x: -47, y: 1116}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -2818,7 +2782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 13, y: 781}
+  m_UIPosition: {x: -161, y: 785}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -2866,14 +2830,14 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614689}
       inputSlot: {fileID: 8926484042661614581}
-    position: {x: 7, y: 728}
+    position: {x: -159, y: 734}
     expandedSlots: []
     expanded: 0
   - m_Id: 1
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614689}
       inputSlot: {fileID: 8926484042661614977}
-    position: {x: -1, y: 929}
+    position: {x: -173, y: 934}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614689
@@ -2951,14 +2915,14 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614691}
       inputSlot: {fileID: 8926484042661614592}
-    position: {x: 9, y: 1110}
+    position: {x: -242, y: 1137}
     expandedSlots: []
     expanded: 0
   - m_Id: 1
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614691}
       inputSlot: {fileID: 8926484042661615016}
-    position: {x: 7, y: 1306}
+    position: {x: -244, y: 1318}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614691
@@ -3011,7 +2975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 1, y: 1168}
+  m_UIPosition: {x: -263, y: 1186}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -3128,7 +3092,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -5, y: 464}
+  m_UIPosition: {x: -186, y: 468}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -3425,7 +3389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 187, y: 911}
+  m_UIPosition: {x: 54, y: 916}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -3712,7 +3676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 5, y: 982}
+  m_UIPosition: {x: -171, y: 985}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -4323,7 +4287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 707, y: 2027}
+  m_UIPosition: {x: 711, y: 1440}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -4387,7 +4351,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 188, y: 1308}
+  m_UIPosition: {x: -51, y: 1305}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -4674,7 +4638,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -1, y: 1364}
+  m_UIPosition: {x: -264, y: 1372}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -4800,7 +4764,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 532, y: 1082}
+  m_UIPosition: {x: 348, y: 1153}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -5396,7 +5360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -372, y: 1538}
+  m_UIPosition: {x: -626, y: 1546}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -5562,7 +5526,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -398, y: 1574}
+  m_UIPosition: {x: -662, y: 1582}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -5730,7 +5694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -103, y: 1552}
+  m_UIPosition: {x: -309, y: 1560}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -6082,7 +6046,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 87, y: 1507}
+  m_UIPosition: {x: -113, y: 1509}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -6122,7 +6086,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.02
+      m_SerializableObject: 0.1
     m_Space: 2147483647
   m_Property:
     name: x
@@ -6162,7 +6126,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.Single, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 0.11
+      m_SerializableObject: 0.2
     m_Space: 2147483647
   m_Property:
     name: y
@@ -6269,7 +6233,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 310, y: 1562}
+  m_UIPosition: {x: 122, y: 1564}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -6431,7 +6395,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 278, y: 353}
+  m_UIPosition: {x: 148, y: 340}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -6595,7 +6559,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 281, y: 484}
+  m_UIPosition: {x: 148, y: 479}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -6963,7 +6927,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -713, y: 1814}
+  m_UIPosition: {x: -980, y: 1827}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -7028,7 +6992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -458, y: 1764}
+  m_UIPosition: {x: -679, y: 1768}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -7163,7 +7127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -99, y: 1746}
+  m_UIPosition: {x: -312, y: 1766}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -7598,7 +7562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 290, y: 1798}
+  m_UIPosition: {x: 87, y: 1824}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -8059,7 +8023,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -607, y: 1929}
+  m_UIPosition: {x: -846, y: 1951}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -8115,7 +8079,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -262, y: 1868}
+  m_UIPosition: {x: -474, y: 1876}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -8251,7 +8215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -457, y: 1875}
+  m_UIPosition: {x: -685, y: 1896}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:

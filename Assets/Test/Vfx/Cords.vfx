@@ -15,7 +15,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children:
   - {fileID: 8926484042661614997}
-  m_UIPosition: {x: 944, y: -292}
+  m_UIPosition: {x: 806, y: -389}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -92,10 +92,10 @@ MonoBehaviour:
   - title: Color Sample
     position:
       serializedVersion: 2
-      x: -237
-      y: 1067
-      width: 523
-      height: 238
+      x: -401
+      y: 1079
+      width: 539
+      height: 219
     contents:
     - model: {fileID: 8926484042661614591}
       id: 0
@@ -109,10 +109,10 @@ MonoBehaviour:
   - title: Position Sample
     position:
       serializedVersion: 2
-      x: -2
-      y: 843
-      width: 515
-      height: 191
+      x: -11
+      y: 851
+      width: 530
+      height: 183
     contents:
     - model: {fileID: 8926484042661614580}
       id: 0
@@ -126,9 +126,9 @@ MonoBehaviour:
   - title: Position Sample
     position:
       serializedVersion: 2
-      x: 2
+      x: -10
       y: 641
-      width: 511
+      width: 540
       height: 187
     contents:
     - model: {fileID: 8926484042661614763}
@@ -143,10 +143,10 @@ MonoBehaviour:
   - title: Du
     position:
       serializedVersion: 2
-      x: 11
-      y: 415
-      width: 355
-      height: 199
+      x: -42
+      y: 420
+      width: 385
+      height: 200
     contents:
     - model: {fileID: 8926484042661614757}
       id: 0
@@ -157,10 +157,10 @@ MonoBehaviour:
   - title: Center UV
     position:
       serializedVersion: 2
-      x: -531
-      y: 37
-      width: 900
-      height: 358
+      x: -655
+      y: 47
+      width: 1002
+      height: 351
     contents:
     - model: {fileID: 8926484042661614573}
       id: 0
@@ -195,10 +195,10 @@ MonoBehaviour:
   - title: Color Sample
     position:
       serializedVersion: 2
-      x: -236
-      y: 1321
-      width: 523
-      height: 238
+      x: -406
+      y: 1304
+      width: 539
+      height: 219
     contents:
     - model: {fileID: 8926484042661614864}
       id: 0
@@ -212,10 +212,10 @@ MonoBehaviour:
   - title: Distance Filter
     position:
       serializedVersion: 2
-      x: -412
-      y: 1577
-      width: 896
-      height: 202
+      x: -493
+      y: 1585
+      width: 1004
+      height: 200
     contents:
     - model: {fileID: 8926484042661614916}
       id: 0
@@ -235,10 +235,10 @@ MonoBehaviour:
   - title: Noise Field Scroll
     position:
       serializedVersion: 2
-      x: -717
-      y: 2204
-      width: 470
-      height: 195
+      x: -943
+      y: 2197
+      width: 506
+      height: 194
     contents:
     - model: {fileID: 8926484042661615172}
       id: 0
@@ -252,10 +252,10 @@ MonoBehaviour:
   - title: Acceleration
     position:
       serializedVersion: 2
-      x: -26
-      y: 2017
-      width: 684
-      height: 529
+      x: -165
+      y: 2022
+      width: 775
+      height: 536
     contents:
     - model: {fileID: 8926484042661615068}
       id: 0
@@ -275,10 +275,10 @@ MonoBehaviour:
   - title: Target Move
     position:
       serializedVersion: 2
-      x: 212
-      y: 2568
-      width: 441
-      height: 155
+      x: 153
+      y: 2573
+      width: 458
+      height: 152
     contents:
     - model: {fileID: 8926484042661615137}
       id: 0
@@ -294,10 +294,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: -717
-    y: -292
-    width: 2037
-    height: 3442
+    x: -918
+    y: -389
+    width: 2128
+    height: 3557
 --- !u!114 &114350483966674976
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -452,7 +452,7 @@ MonoBehaviour:
   - {fileID: 114780028408030698}
   - {fileID: 8926484042661614810}
   dataType: 0
-  capacity: 800000
+  capacity: 640000
   stripCapacity: 16
   particlePerStripCount: 16
   m_Space: 0
@@ -572,7 +572,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615125}
   - {fileID: 8926484042661615131}
   - {fileID: 8926484042661615160}
-  m_UIPosition: {x: 810, y: 2237}
+  m_UIPosition: {x: 818, y: 2253}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -885,17 +885,17 @@ VisualEffectResource:
       PARTICLE_PER_STRIP_COUNT);\r\n\t\tInitStripAttributes(particleIndex, attributes,
       stripData);\r\n\t\t// TODO Change seed to be sure we're deterministic on random
       with strip\r\n#endif\r\n        \r\n        {\n            uint tmp_q = attributes.particleId
-      / (uint)600;\n            uint tmp_r = tmp_q * (uint)600;\n            uint
+      / (uint)320;\n            uint tmp_r = tmp_q * (uint)320;\n            uint
       tmp_s = attributes.particleId - tmp_r;\n            float tmp_t = (float)tmp_s;\n           
-      float tmp_v = tmp_t / (float)600;\n            uint tmp_w = tmp_q ^ asuint(uniform_b);\n           
+      float tmp_v = tmp_t / (float)320;\n            uint tmp_w = tmp_q ^ asuint(uniform_b);\n           
       float tmp_x = FixedRand(tmp_w);\n            float2 tmp_y = float2(tmp_v, tmp_x);\n           
-      float2 tmp_ba = tmp_y - float2(0.000833333354, 0);\n            SetCustomAttribute_B23F5E21(
+      float2 tmp_ba = tmp_y - float2(0.00156250002, 0);\n            SetCustomAttribute_B23F5E21(
       /*inout */attributes.UV1, tmp_ba);\n        }\n        {\n            uint
-      tmp_q = attributes.particleId / (uint)600;\n            uint tmp_r = tmp_q
-      * (uint)600;\n            uint tmp_s = attributes.particleId - tmp_r;\n           
-      float tmp_t = (float)tmp_s;\n            float tmp_v = tmp_t / (float)600;\n           
+      tmp_q = attributes.particleId / (uint)320;\n            uint tmp_r = tmp_q
+      * (uint)320;\n            uint tmp_s = attributes.particleId - tmp_r;\n           
+      float tmp_t = (float)tmp_s;\n            float tmp_v = tmp_t / (float)320;\n           
       uint tmp_w = tmp_q ^ asuint(uniform_b);\n            float tmp_x = FixedRand(tmp_w);\n           
-      float2 tmp_y = float2(tmp_v, tmp_x);\n            float2 tmp_ba = tmp_y + float2(0.000833333354,
+      float2 tmp_y = float2(tmp_v, tmp_x);\n            float2 tmp_ba = tmp_y + float2(0.00156250002,
       0);\n            SetCustomAttribute_B5FA1F34( /*inout */attributes.UV2, tmp_ba);\n       
       }\n        {\n            float4 tmp_q = SampleTexture(VFX_SAMPLER(texture_b),attributes.UV1,(float)0);\n           
       float tmp_r = tmp_q[0];\n            float tmp_s = tmp_q[1];\n            float
@@ -938,11 +938,11 @@ VisualEffectResource:
       uint index = deadListIn[deadIndex];\r\n#else\r\n            uint index = particleIndex;\r\n#endif\r\n           
       attributeBuffer.Store3((index * 0x8 + 0x0) << 2,asuint(attributes.position));\n           
       attributeBuffer.Store3((index * 0x8 + 0x4) << 2,asuint(attributes.targetPosition));\n           
-      attributeBuffer.Store3((index * 0x4 + 0x61A800) << 2,asuint(attributes.color));\n           
-      attributeBuffer.Store((index * 0x1 + 0x927C00) << 2,asuint(attributes.lifetime));\n           
-      attributeBuffer.Store((index * 0x4 + 0x61A803) << 2,asuint(attributes.alpha));\n           
-      attributeBuffer.Store3((index * 0x8 + 0x9EB100) << 2,asuint(attributes.velocity));\n           
-      attributeBuffer.Store3((index * 0x8 + 0x9EB104) << 2,asuint(attributes.CustomAttribute));\n           
+      attributeBuffer.Store3((index * 0x4 + 0x4E2000) << 2,asuint(attributes.color));\n           
+      attributeBuffer.Store((index * 0x1 + 0x753000) << 2,asuint(attributes.lifetime));\n           
+      attributeBuffer.Store((index * 0x4 + 0x4E2003) << 2,asuint(attributes.alpha));\n           
+      attributeBuffer.Store3((index * 0x8 + 0x7EF400) << 2,asuint(attributes.velocity));\n           
+      attributeBuffer.Store3((index * 0x8 + 0x7EF404) << 2,asuint(attributes.CustomAttribute));\n           
       attributeBuffer.Store((index * 0x8 + 0x3) << 2,uint(attributes.alive));\n           
       attributeBuffer.Store((index * 0x8 + 0x7) << 2,asuint(attributes.age));\n           
       \n\r\n        }\r\n    }\r\n}\r\n"
@@ -986,9 +986,9 @@ VisualEffectResource:
       = (attributeBuffer.Load((index * 0x8 + 0x3) << 2));\n\t\t\n\r\n\t\tif (attributes.alive)\r\n\t\t{\r\n\t\t\tattributes.position
       = asfloat(attributeBuffer.Load3((index * 0x8 + 0x0) << 2));\n\t\t\tattributes.targetPosition
       = asfloat(attributeBuffer.Load3((index * 0x8 + 0x4) << 2));\n\t\t\tattributes.lifetime
-      = asfloat(attributeBuffer.Load((index * 0x1 + 0x927C00) << 2));\n\t\t\tattributes.velocity
-      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x9EB100) << 2));\n\t\t\tattributes.CustomAttribute
-      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x9EB104) << 2));\n\t\t\tattributes.age
+      = asfloat(attributeBuffer.Load((index * 0x1 + 0x753000) << 2));\n\t\t\tattributes.velocity
+      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x7EF400) << 2));\n\t\t\tattributes.CustomAttribute
+      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x7EF404) << 2));\n\t\t\tattributes.age
       = asfloat(attributeBuffer.Load((index * 0x8 + 0x7) << 2));\n\t\t\t\n\r\n\r\n//
       Initialize built-in needed attributes\r\n#if VFX_USE_OLDPOSITION_CURRENT\r\n\t\t\tattributes.oldPosition
       = attributes.position;\r\n#endif\r\n#if HAS_STRIPS\r\n            const StripData
@@ -1011,8 +1011,8 @@ VisualEffectResource:
       /*inout */attributes.alive);\n\t\t\t\n\r\n\r\n\t\t\tif (attributes.alive)\r\n\t\t\t{\r\n\t\t\t\tattributeBuffer.Store3((index
       * 0x8 + 0x0) << 2,asuint(attributes.position));\n\t\t\t\tattributeBuffer.Store3((index
       * 0x8 + 0x4) << 2,asuint(attributes.targetPosition));\n\t\t\t\tattributeBuffer.Store3((index
-      * 0x8 + 0x9EB100) << 2,asuint(attributes.velocity));\n\t\t\t\tattributeBuffer.Store3((index
-      * 0x8 + 0x9EB104) << 2,asuint(attributes.CustomAttribute));\n\t\t\t\tattributeBuffer.Store((index
+      * 0x8 + 0x7EF400) << 2,asuint(attributes.velocity));\n\t\t\t\tattributeBuffer.Store3((index
+      * 0x8 + 0x7EF404) << 2,asuint(attributes.CustomAttribute));\n\t\t\t\tattributeBuffer.Store((index
       * 0x8 + 0x7) << 2,asuint(attributes.age));\n\t\t\t\t\n\r\n#if VFX_HAS_INDIRECT_DRAW\r\n               
       uint indirectIndex = indirectBuffer.IncrementCounter();\r\n\t\t\t\tindirectBuffer[indirectIndex]
       = index;\r\n#endif\r\n\r\n#if HAS_STRIPS\t\t\t\r\n\t\t\t\tuint relativeIndexInStrip
@@ -1029,9 +1029,9 @@ VisualEffectResource:
       \r\n            }            \r\n        }\r\n#endif\r\n#else\r\n\t\tattributes.position
       = asfloat(attributeBuffer.Load3((index * 0x8 + 0x0) << 2));\n\t\tattributes.targetPosition
       = asfloat(attributeBuffer.Load3((index * 0x8 + 0x4) << 2));\n\t\tattributes.lifetime
-      = asfloat(attributeBuffer.Load((index * 0x1 + 0x927C00) << 2));\n\t\tattributes.velocity
-      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x9EB100) << 2));\n\t\tattributes.CustomAttribute
-      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x9EB104) << 2));\n\t\tattributes.alive
+      = asfloat(attributeBuffer.Load((index * 0x1 + 0x753000) << 2));\n\t\tattributes.velocity
+      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x7EF400) << 2));\n\t\tattributes.CustomAttribute
+      = asfloat(attributeBuffer.Load3((index * 0x8 + 0x7EF404) << 2));\n\t\tattributes.alive
       = (attributeBuffer.Load((index * 0x8 + 0x3) << 2));\n\t\tattributes.age = asfloat(attributeBuffer.Load((index
       * 0x8 + 0x7) << 2));\n\t\t\n\r\n\t\t\r\n#if VFX_USE_OLDPOSITION_CURRENT\r\n\t\tattributes.oldPosition
       = attributes.position;\r\n#endif\r\n#if HAS_STRIPS\r\n        const StripData
@@ -1053,8 +1053,8 @@ VisualEffectResource:
       attributes.lifetime,  /*inout */attributes.alive);\n\t\t\n\r\n\t\tattributeBuffer.Store3((index
       * 0x8 + 0x0) << 2,asuint(attributes.position));\n\t\tattributeBuffer.Store3((index
       * 0x8 + 0x4) << 2,asuint(attributes.targetPosition));\n\t\tattributeBuffer.Store3((index
-      * 0x8 + 0x9EB100) << 2,asuint(attributes.velocity));\n\t\tattributeBuffer.Store3((index
-      * 0x8 + 0x9EB104) << 2,asuint(attributes.CustomAttribute));\n\t\tattributeBuffer.Store((index
+      * 0x8 + 0x7EF400) << 2,asuint(attributes.velocity));\n\t\tattributeBuffer.Store3((index
+      * 0x8 + 0x7EF404) << 2,asuint(attributes.CustomAttribute));\n\t\tattributeBuffer.Store((index
       * 0x8 + 0x3) << 2,uint(attributes.alive));\n\t\tattributeBuffer.Store((index
       * 0x8 + 0x7) << 2,asuint(attributes.age));\n\t\t\n\r\n#if VFX_HAS_INDIRECT_DRAW\r\n       
       uint indirectIndex = indirectBuffer.IncrementCounter();\r\n\t\tindirectBuffer[indirectIndex]
@@ -1124,18 +1124,18 @@ VisualEffectResource:
       = indirectBuffer[index];\n\t\t\t\t\t\tattributes.position = asfloat(attributeBuffer.Load3((index
       * 0x8 + 0x0) << 2));\n\t\t\t\t\t\tattributes.targetPosition = asfloat(attributeBuffer.Load3((index
       * 0x8 + 0x4) << 2));\n\t\t\t\t\t\tattributes.color = asfloat(attributeBuffer.Load3((index
-      * 0x4 + 0x61A800) << 2));\n\t\t\t\t\t\tattributes.lifetime = asfloat(attributeBuffer.Load((index
-      * 0x1 + 0x927C00) << 2));\n\t\t\t\t\t\tattributes.alpha = asfloat(attributeBuffer.Load((index
-      * 0x4 + 0x61A803) << 2));\n\t\t\t\t\t\tattributes.alive = (attributeBuffer.Load((index
+      * 0x4 + 0x4E2000) << 2));\n\t\t\t\t\t\tattributes.lifetime = asfloat(attributeBuffer.Load((index
+      * 0x1 + 0x753000) << 2));\n\t\t\t\t\t\tattributes.alpha = asfloat(attributeBuffer.Load((index
+      * 0x4 + 0x4E2003) << 2));\n\t\t\t\t\t\tattributes.alive = (attributeBuffer.Load((index
       * 0x8 + 0x3) << 2));\n\t\t\t\t\t\tattributes.age = asfloat(attributeBuffer.Load((index
       * 0x8 + 0x7) << 2));\n\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t#else\n\t\t\t\t\t\tattributes.alive
       = (attributeBuffer.Load((index * 0x8 + 0x3) << 2));\n\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t#if
       !HAS_STRIPS\n\t\t\t\t\t\tif (!attributes.alive)\n\t\t\t\t\t\t\treturn o;\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\n\t\t\t\t\t\tattributes.position
       = asfloat(attributeBuffer.Load3((index * 0x8 + 0x0) << 2));\n\t\t\t\t\t\tattributes.targetPosition
       = asfloat(attributeBuffer.Load3((index * 0x8 + 0x4) << 2));\n\t\t\t\t\t\tattributes.color
-      = asfloat(attributeBuffer.Load3((index * 0x4 + 0x61A800) << 2));\n\t\t\t\t\t\tattributes.lifetime
-      = asfloat(attributeBuffer.Load((index * 0x1 + 0x927C00) << 2));\n\t\t\t\t\t\tattributes.alpha
-      = asfloat(attributeBuffer.Load((index * 0x4 + 0x61A803) << 2));\n\t\t\t\t\t\tattributes.age
+      = asfloat(attributeBuffer.Load3((index * 0x4 + 0x4E2000) << 2));\n\t\t\t\t\t\tattributes.lifetime
+      = asfloat(attributeBuffer.Load((index * 0x1 + 0x753000) << 2));\n\t\t\t\t\t\tattributes.alpha
+      = asfloat(attributeBuffer.Load((index * 0x4 + 0x4E2003) << 2));\n\t\t\t\t\t\tattributes.age
       = asfloat(attributeBuffer.Load((index * 0x8 + 0x7) << 2));\n\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\n\t\t\t\t\t\t//
       Initialize built-in needed attributes\n\t\t\t\t\t\t#if HAS_STRIPS\n\t\t\t\t\t\tInitStripAttributes(index,
       attributes, stripData);\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\n\t\t\t\tAttributeFromCurve_80EE3201(
@@ -1226,18 +1226,18 @@ VisualEffectResource:
       = indirectBuffer[index];\n\t\t\t\t\t\tattributes.position = asfloat(attributeBuffer.Load3((index
       * 0x8 + 0x0) << 2));\n\t\t\t\t\t\tattributes.targetPosition = asfloat(attributeBuffer.Load3((index
       * 0x8 + 0x4) << 2));\n\t\t\t\t\t\tattributes.color = asfloat(attributeBuffer.Load3((index
-      * 0x4 + 0x61A800) << 2));\n\t\t\t\t\t\tattributes.lifetime = asfloat(attributeBuffer.Load((index
-      * 0x1 + 0x927C00) << 2));\n\t\t\t\t\t\tattributes.alpha = asfloat(attributeBuffer.Load((index
-      * 0x4 + 0x61A803) << 2));\n\t\t\t\t\t\tattributes.alive = (attributeBuffer.Load((index
+      * 0x4 + 0x4E2000) << 2));\n\t\t\t\t\t\tattributes.lifetime = asfloat(attributeBuffer.Load((index
+      * 0x1 + 0x753000) << 2));\n\t\t\t\t\t\tattributes.alpha = asfloat(attributeBuffer.Load((index
+      * 0x4 + 0x4E2003) << 2));\n\t\t\t\t\t\tattributes.alive = (attributeBuffer.Load((index
       * 0x8 + 0x3) << 2));\n\t\t\t\t\t\tattributes.age = asfloat(attributeBuffer.Load((index
       * 0x8 + 0x7) << 2));\n\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t#else\n\t\t\t\t\t\tattributes.alive
       = (attributeBuffer.Load((index * 0x8 + 0x3) << 2));\n\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t#if
       !HAS_STRIPS\n\t\t\t\t\t\tif (!attributes.alive)\n\t\t\t\t\t\t\treturn o;\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\t\n\t\t\t\t\t\tattributes.position
       = asfloat(attributeBuffer.Load3((index * 0x8 + 0x0) << 2));\n\t\t\t\t\t\tattributes.targetPosition
       = asfloat(attributeBuffer.Load3((index * 0x8 + 0x4) << 2));\n\t\t\t\t\t\tattributes.color
-      = asfloat(attributeBuffer.Load3((index * 0x4 + 0x61A800) << 2));\n\t\t\t\t\t\tattributes.lifetime
-      = asfloat(attributeBuffer.Load((index * 0x1 + 0x927C00) << 2));\n\t\t\t\t\t\tattributes.alpha
-      = asfloat(attributeBuffer.Load((index * 0x4 + 0x61A803) << 2));\n\t\t\t\t\t\tattributes.age
+      = asfloat(attributeBuffer.Load3((index * 0x4 + 0x4E2000) << 2));\n\t\t\t\t\t\tattributes.lifetime
+      = asfloat(attributeBuffer.Load((index * 0x1 + 0x753000) << 2));\n\t\t\t\t\t\tattributes.alpha
+      = asfloat(attributeBuffer.Load((index * 0x4 + 0x4E2003) << 2));\n\t\t\t\t\t\tattributes.age
       = asfloat(attributeBuffer.Load((index * 0x8 + 0x7) << 2));\n\t\t\t\t\t\t\n\t\t\t\t\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\n\t\t\t\t\t\t//
       Initialize built-in needed attributes\n\t\t\t\t\t\t#if HAS_STRIPS\n\t\t\t\t\t\tInitStripAttributes(index,
       attributes, stripData);\n\t\t\t\t\t\t#endif\n\t\t\t\t\t\t\n\t\t\t\tAttributeFromCurve_80EE3201(
@@ -1487,17 +1487,17 @@ VisualEffectResource:
         - m_ExpressionIndex: 11
           m_Value: 3
         - m_ExpressionIndex: 14
-          m_Value: 600
+          m_Value: 320
         - m_ExpressionIndex: 22
           m_Value: 1
       m_Vector2f:
         m_Array:
         - m_ExpressionIndex: 23
-          m_Value: {x: 0.00083333335, y: 0}
+          m_Value: {x: 0.0015625, y: 0}
         - m_ExpressionIndex: 26
           m_Value: {x: 0, y: 0}
         - m_ExpressionIndex: 28
-          m_Value: {x: 9600, y: 9600}
+          m_Value: {x: 5120, y: 5120}
       m_Vector3f:
         m_Array:
         - m_ExpressionIndex: 8
@@ -1517,7 +1517,7 @@ VisualEffectResource:
       m_Uint:
         m_Array:
         - m_ExpressionIndex: 3
-          m_Value: 600
+          m_Value: 320
       m_Int:
         m_Array:
         - m_ExpressionIndex: 15
@@ -1573,7 +1573,7 @@ VisualEffectResource:
       index: 13
     m_Buffers:
     - type: 1
-      size: 16800000
+      size: 13440000
       layout:
       - name: position
         type: 3
@@ -1602,34 +1602,34 @@ VisualEffectResource:
       - name: color
         type: 3
         offset:
-          bucket: 6400000
+          bucket: 5120000
           structure: 4
           element: 0
       - name: alpha
         type: 1
         offset:
-          bucket: 6400000
+          bucket: 5120000
           structure: 4
           element: 3
       - name: lifetime
         type: 1
         offset:
-          bucket: 9600000
+          bucket: 7680000
           structure: 1
           element: 0
       - name: velocity
         type: 3
         offset:
-          bucket: 10400000
+          bucket: 8320000
           structure: 8
           element: 0
       - name: CustomAttribute
         type: 3
         offset:
-          bucket: 10400000
+          bucket: 8320000
           structure: 8
           element: 4
-      capacity: 800000
+      capacity: 640000
       stride: 4
     - type: 1
       size: 1
@@ -1643,7 +1643,7 @@ VisualEffectResource:
       capacity: 1
       stride: 4
     - type: 4
-      size: 800000
+      size: 640000
       layout: []
       capacity: 0
       stride: 4
@@ -1718,7 +1718,7 @@ VisualEffectResource:
       shaderSourceIndex: -1
   - type: 1
     flags: 1
-    capacity: 800000
+    capacity: 640000
     layer: 4294967295
     buffers:
     - nameId: attributeBuffer
@@ -1806,7 +1806,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 152, y: 163}
+  m_UIPosition: {x: 130, y: 168}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -2038,7 +2038,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 214, y: 908}
+  m_UIPosition: {x: 205, y: 908}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -2325,8 +2325,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -23, y: 1132}
-  m_UICollapsed: 0
+  m_UIPosition: {x: -187, y: 1136}
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661614592}
@@ -2640,7 +2640,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 27, y: 979}
+  m_UIPosition: {x: 18, y: 979}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -2688,14 +2688,14 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614689}
       inputSlot: {fileID: 8926484042661614581}
-    position: {x: 23, y: 926}
+    position: {x: 14, y: 926}
     expandedSlots: []
     expanded: 0
   - m_Id: 1
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614689}
       inputSlot: {fileID: 8926484042661614764}
-    position: {x: 27, y: 718}
+    position: {x: 15, y: 720}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614689
@@ -2773,14 +2773,14 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614691}
       inputSlot: {fileID: 8926484042661614592}
-    position: {x: -204, y: 1147}
+    position: {x: -368, y: 1151}
     expandedSlots: []
     expanded: 0
   - m_Id: 1
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614691}
       inputSlot: {fileID: 8926484042661614865}
-    position: {x: -203, y: 1401}
+    position: {x: -373, y: 1376}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614691
@@ -2833,7 +2833,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -212, y: 1205}
+  m_UIPosition: {x: -376, y: 1209}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -2881,35 +2881,35 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614705}
       inputSlot: {fileID: 8926484042661614986}
-    position: {x: 623, y: -182}
+    position: {x: 442, y: -277}
     expandedSlots: []
     expanded: 0
   - m_Id: 1
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614705}
       inputSlot: {fileID: 8926484042661614725}
-    position: {x: -331, y: 126}
+    position: {x: -432, y: 129}
     expandedSlots: []
     expanded: 0
   - m_Id: 2
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614705}
       inputSlot: {fileID: 8926484042661614734}
-    position: {x: -419, y: 316}
+    position: {x: -511, y: 321}
     expandedSlots: []
     expanded: 0
   - m_Id: 3
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614705}
       inputSlot: {fileID: 8926484042661614743}
-    position: {x: -179, y: 149}
+    position: {x: -248, y: 153}
     expandedSlots: []
     expanded: 0
   - m_Id: 4
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614705}
       inputSlot: {fileID: 8926484042661614762}
-    position: {x: 36, y: 509}
+    position: {x: -17, y: 511}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614705
@@ -2936,7 +2936,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 600
+      m_SerializableObject: 320
     m_Space: 2147483647
   m_Property:
     name: o
@@ -2965,7 +2965,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -420, y: 101}
+  m_UIPosition: {x: -558, y: 104}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -3030,7 +3030,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -172, y: 118}
+  m_UIPosition: {x: -250, y: 121}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -3172,7 +3172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -506, y: 291}
+  m_UIPosition: {x: -630, y: 292}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -3237,7 +3237,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -254, y: 306}
+  m_UIPosition: {x: -328, y: 308}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -3373,7 +3373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -17, y: 137}
+  m_UIPosition: {x: -64, y: 140}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -3509,7 +3509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 189, y: 477}
+  m_UIPosition: {x: 164, y: 477}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -3645,7 +3645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 214, y: 706}
+  m_UIPosition: {x: 216, y: 698}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -3932,7 +3932,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 30, y: 773}
+  m_UIPosition: {x: 18, y: 773}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -3956,7 +3956,7 @@ MonoBehaviour:
   m_Parent: {fileID: 114350483966674976}
   m_Children:
   - {fileID: 8926484042661615220}
-  m_UIPosition: {x: 795, y: 2840}
+  m_UIPosition: {x: 816, y: 2865}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
@@ -5137,8 +5137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -22, y: 1386}
-  m_UICollapsed: 0
+  m_UIPosition: {x: -192, y: 1361}
+  m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661614865}
@@ -5427,7 +5427,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -211, y: 1459}
+  m_UIPosition: {x: -381, y: 1434}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -5656,9 +5656,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 402, y: 1248}
-  m_UICollapsed: 0
-  m_UISuperCollapsed: 1
+  m_UIPosition: {x: 308, y: 1134}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661614890}
   - {fileID: 8926484042661614898}
@@ -6153,9 +6153,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 395, y: 1364}
-  m_UICollapsed: 0
-  m_UISuperCollapsed: 1
+  m_UIPosition: {x: 349, y: 1331}
+  m_UICollapsed: 1
+  m_UISuperCollapsed: 0
   m_InputSlots:
   - {fileID: 8926484042661614903}
   - {fileID: 8926484042661614904}
@@ -6289,7 +6289,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -361, y: 1674}
+  m_UIPosition: {x: -435, y: 1676}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -6455,7 +6455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -387, y: 1714}
+  m_UIPosition: {x: -468, y: 1711}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -6623,7 +6623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -100, y: 1695}
+  m_UIPosition: {x: -141, y: 1695}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -6975,7 +6975,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 76, y: 1642}
+  m_UIPosition: {x: 59, y: 1642}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -7256,7 +7256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 784, y: -149}
+  m_UIPosition: {x: 625, y: -240}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -7417,7 +7417,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 8926484042661614990}
       inputSlot: {fileID: 8926484042661614987}
-    position: {x: 640, y: -137}
+    position: {x: 459, y: -232}
     expandedSlots: []
     expanded: 0
 --- !u!114 &8926484042661614990
@@ -7469,7 +7469,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -94, y: 203}
+  m_UIPosition: {x: -163, y: 205}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -9116,7 +9116,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -497, y: 2415}
+  m_UIPosition: {x: -725, y: 2422}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -9284,7 +9284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -469, y: 2159}
+  m_UIPosition: {x: -683, y: 2143}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -9450,7 +9450,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -1, y: 2081}
+  m_UIPosition: {x: -140, y: 2081}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -9981,7 +9981,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 2, y: 2303}
+  m_UIPosition: {x: -137, y: 2303}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -10512,7 +10512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 488, y: 2237}
+  m_UIPosition: {x: 421, y: 2232}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -10852,7 +10852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 486, y: 2343}
+  m_UIPosition: {x: 419, y: 2338}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -11157,7 +11157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 335, y: 2285}
+  m_UIPosition: {x: 225, y: 2285}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -11620,7 +11620,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 237, y: 2630}
+  m_UIPosition: {x: 178, y: 2632}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -11780,7 +11780,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 340, y: 2668}
+  m_UIPosition: {x: 281, y: 2670}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -11836,7 +11836,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: 481, y: 2648}
+  m_UIPosition: {x: 422, y: 2650}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -12387,7 +12387,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -563, y: 2268}
+  m_UIPosition: {x: -803, y: 2256}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -12443,7 +12443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -417, y: 2305}
+  m_UIPosition: {x: -626, y: 2295}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -12509,7 +12509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -692, y: 2298}
+  m_UIPosition: {x: -918, y: 2288}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -13081,7 +13081,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -186, y: 2227}
+  m_UIPosition: {x: -356, y: 2213}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:
@@ -13523,7 +13523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 114350483966674976}
   m_Children: []
-  m_UIPosition: {x: -184, y: 2358}
+  m_UIPosition: {x: -354, y: 2344}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots:

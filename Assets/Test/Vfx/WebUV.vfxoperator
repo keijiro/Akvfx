@@ -54,6 +54,7 @@ VisualEffectResource:
     m_UpdateMode: 0
     m_PreWarmDeltaTime: 0.05
     m_PreWarmStepCount: 0
+    m_InitialEventName: OnPlay
   m_Systems: []
 --- !u!114 &2
 MonoBehaviour:
@@ -138,7 +139,7 @@ MonoBehaviour:
     min: -Infinity
     max: Infinity
     descendantCount: 0
-  m_GraphVersion: 2
+  m_GraphVersion: 4
   m_saved: 1
   m_SubgraphDependencies: []
   m_CategoryPath: 
@@ -160,10 +161,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: 768
-    y: -347
-    width: 1287
-    height: 554
+    x: 747
+    y: -352
+    width: 1363
+    height: 596
 --- !u!114 &29
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,7 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 2}
   m_Children: []
-  m_UIPosition: {x: 910, y: 18}
+  m_UIPosition: {x: 882, y: -1}
   m_UICollapsed: 0
   m_UISuperCollapsed: 1
   m_InputSlots: []
@@ -371,7 +372,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 2}
   m_Children: []
-  m_UIPosition: {x: 1047, y: -7}
+  m_UIPosition: {x: 1035, y: -35}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -508,7 +509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 2}
   m_Children: []
-  m_UIPosition: {x: 1329, y: -347}
+  m_UIPosition: {x: 1330, y: -352}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -561,7 +562,7 @@ MonoBehaviour:
     - m_Type: 3
       m_Min: -Infinity
       m_Max: Infinity
-      m_Tooltip: The coordinate in the noise field to take the sample from.
+      m_Tooltip: Sets the coordinate in the noise field to take the sample from.
       m_Regex: 
       m_RegexMaxLength: 0
   m_Direction: 0
@@ -702,7 +703,8 @@ MonoBehaviour:
     - m_Type: 3
       m_Min: -Infinity
       m_Max: Infinity
-      m_Tooltip: The frequency of the noise.
+      m_Tooltip: Sets the period in which the noise is sampled. Higher frequencies
+        result in more frequent noise change.
       m_Regex: 
       m_RegexMaxLength: 0
   m_Direction: 0
@@ -742,7 +744,8 @@ MonoBehaviour:
     - m_Type: 3
       m_Min: -Infinity
       m_Max: Infinity
-      m_Tooltip: The number of layers of noise.
+      m_Tooltip: Sets the number of layers of noise. More octaves create a more varied
+        look, but are also more expensive to calculate.
       m_Regex: 
       m_RegexMaxLength: 0
   m_Direction: 0
@@ -788,7 +791,7 @@ MonoBehaviour:
     - m_Type: 3
       m_Min: -Infinity
       m_Max: Infinity
-      m_Tooltip: The scaling factor applied to each octave. Also known as persistence.
+      m_Tooltip: 'Sets the scaling factor applied to each octave (also known as persistence.) '
       m_Regex: 
       m_RegexMaxLength: 0
   m_Direction: 0
@@ -834,7 +837,9 @@ MonoBehaviour:
     - m_Type: 3
       m_Min: -Infinity
       m_Max: Infinity
-      m_Tooltip: The rate of change of the frequency for each successive octave.
+      m_Tooltip: Sets the rate of change of the frequency for each successive octave.
+        A lacunarity value of 1 results in each octave having the same frequency.
+        Higher values result in more details, and values below 1 produce less details.
       m_Regex: 
       m_RegexMaxLength: 0
   m_Direction: 0
@@ -865,7 +870,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector2, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":0.10000000149011612,"y":0.8999999761581421}'
+      m_SerializableObject: '{"x":-0.5,"y":1.5}'
     m_Space: 2147483647
   m_Property:
     name: range
@@ -876,7 +881,7 @@ MonoBehaviour:
     - m_Type: 3
       m_Min: -Infinity
       m_Max: Infinity
-      m_Tooltip: The noise will be calculated within the specified range.
+      m_Tooltip: Sets the range within which the noise is calculated.
       m_Regex: 
       m_RegexMaxLength: 0
   m_Direction: 0
@@ -982,7 +987,7 @@ MonoBehaviour:
     - m_Type: 3
       m_Min: -Infinity
       m_Max: Infinity
-      m_Tooltip: The calculated noise.
+      m_Tooltip: Outputs the calculated noise value.
       m_Regex: 
       m_RegexMaxLength: 0
   m_Direction: 1
@@ -1026,7 +1031,7 @@ MonoBehaviour:
     - m_Type: 3
       m_Min: -Infinity
       m_Max: Infinity
-      m_Tooltip: The rate of change of the noise.
+      m_Tooltip: Outputs the rate of change of the noise.
       m_Regex: 
       m_RegexMaxLength: 0
   m_Direction: 1
@@ -1144,7 +1149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 2}
   m_Children: []
-  m_UIPosition: {x: 1329, y: -65}
+  m_UIPosition: {x: 1331, y: -46}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -1197,7 +1202,7 @@ MonoBehaviour:
     - m_Type: 3
       m_Min: -Infinity
       m_Max: Infinity
-      m_Tooltip: The coordinate in the noise field to take the sample from.
+      m_Tooltip: Sets the coordinate in the noise field to take the sample from.
       m_Regex: 
       m_RegexMaxLength: 0
   m_Direction: 0
@@ -1338,7 +1343,8 @@ MonoBehaviour:
     - m_Type: 3
       m_Min: -Infinity
       m_Max: Infinity
-      m_Tooltip: The frequency of the noise.
+      m_Tooltip: Sets the period in which the noise is sampled. Higher frequencies
+        result in more frequent noise change.
       m_Regex: 
       m_RegexMaxLength: 0
   m_Direction: 0
@@ -1378,7 +1384,8 @@ MonoBehaviour:
     - m_Type: 3
       m_Min: -Infinity
       m_Max: Infinity
-      m_Tooltip: The number of layers of noise.
+      m_Tooltip: Sets the number of layers of noise. More octaves create a more varied
+        look, but are also more expensive to calculate.
       m_Regex: 
       m_RegexMaxLength: 0
   m_Direction: 0
@@ -1424,7 +1431,7 @@ MonoBehaviour:
     - m_Type: 3
       m_Min: -Infinity
       m_Max: Infinity
-      m_Tooltip: The scaling factor applied to each octave. Also known as persistence.
+      m_Tooltip: 'Sets the scaling factor applied to each octave (also known as persistence.) '
       m_Regex: 
       m_RegexMaxLength: 0
   m_Direction: 0
@@ -1470,7 +1477,9 @@ MonoBehaviour:
     - m_Type: 3
       m_Min: -Infinity
       m_Max: Infinity
-      m_Tooltip: The rate of change of the frequency for each successive octave.
+      m_Tooltip: Sets the rate of change of the frequency for each successive octave.
+        A lacunarity value of 1 results in each octave having the same frequency.
+        Higher values result in more details, and values below 1 produce less details.
       m_Regex: 
       m_RegexMaxLength: 0
   m_Direction: 0
@@ -1501,7 +1510,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Vector2, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"x":-0.20000000298023225,"y":1.2000000476837159}'
+      m_SerializableObject: '{"x":-0.5,"y":1.5}'
     m_Space: 2147483647
   m_Property:
     name: range
@@ -1512,7 +1521,7 @@ MonoBehaviour:
     - m_Type: 3
       m_Min: -Infinity
       m_Max: Infinity
-      m_Tooltip: The noise will be calculated within the specified range.
+      m_Tooltip: Sets the range within which the noise is calculated.
       m_Regex: 
       m_RegexMaxLength: 0
   m_Direction: 0
@@ -1618,7 +1627,7 @@ MonoBehaviour:
     - m_Type: 3
       m_Min: -Infinity
       m_Max: Infinity
-      m_Tooltip: The calculated noise.
+      m_Tooltip: Outputs the calculated noise value.
       m_Regex: 
       m_RegexMaxLength: 0
   m_Direction: 1
@@ -1662,7 +1671,7 @@ MonoBehaviour:
     - m_Type: 3
       m_Min: -Infinity
       m_Max: Infinity
-      m_Tooltip: The rate of change of the noise.
+      m_Tooltip: Outputs the rate of change of the noise.
       m_Regex: 
       m_RegexMaxLength: 0
   m_Direction: 1
@@ -1805,7 +1814,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 74}
       inputSlot: {fileID: 124}
-    position: {x: 772, y: -216}
+    position: {x: 751, y: -218}
     expandedSlots: []
     expanded: 0
 --- !u!114 &74
@@ -1882,7 +1891,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 86}
       inputSlot: {fileID: 79}
-    position: {x: 1962, y: -108}
+    position: {x: 2015, y: -104}
     expandedSlots: []
     expanded: 0
 --- !u!114 &79
@@ -2002,7 +2011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 2}
   m_Children: []
-  m_UIPosition: {x: 1735, y: -160}
+  m_UIPosition: {x: 1788, y: -142}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
   m_InputSlots:
@@ -2258,7 +2267,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 115}
       inputSlot: {fileID: 31}
-    position: {x: 893, y: -151}
+    position: {x: 881, y: -152}
     expandedSlots: []
     expanded: 0
 --- !u!114 &115
@@ -2335,7 +2344,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 117}
       inputSlot: {fileID: 37}
-    position: {x: 882, y: 52}
+    position: {x: 883, y: 26}
     expandedSlots: []
     expanded: 0
 --- !u!114 &117
@@ -2412,7 +2421,7 @@ MonoBehaviour:
     linkedSlots:
     - outputSlot: {fileID: 119}
       inputSlot: {fileID: 125}
-    position: {x: 768, y: -180}
+    position: {x: 747, y: -182}
     expandedSlots: []
     expanded: 0
 --- !u!114 &119
