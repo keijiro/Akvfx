@@ -8,6 +8,8 @@
     Buffer<uint> _DepthBuffer;
     Buffer<float> _XYTable;
     float _MaxDepth;
+    float _Width;
+    float _Height;
 
     float3 uint_to_float3(uint raw)
     {
@@ -40,7 +42,7 @@
     )
     {
         // Buffer index
-        uint idx = (uint)(uv.x * 640) + (uint)((1 - uv.y) * 576) * 640;
+        uint idx = (uint)(uv.x * _Width) + (uint)((1 - uv.y) * _Height) * _Width;
 
         // Color sample
         float3 color = GammaToLinearSpace(uint_to_float3(_ColorBuffer[idx]));

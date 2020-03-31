@@ -24,6 +24,8 @@ namespace Akvfx
 
         SerializedProperty _maxDepth;
 
+        SerializedProperty _depthMode;
+
         static readonly (
             GUIContent enableBlc,
             GUIContent powerIs60Hz
@@ -50,6 +52,8 @@ namespace Akvfx
             _powerIs60Hz = serializedObject.FindProperty("_powerIs60Hz");
 
             _maxDepth = serializedObject.FindProperty("_maxDepth");
+
+            _depthMode = serializedObject.FindProperty("_depthMode");
         }
 
         public override void OnInspectorGUI()
@@ -84,6 +88,8 @@ namespace Akvfx
             EditorGUILayout.PropertyField(_powerIs60Hz, _labels.powerIs60Hz);
 
             EditorGUILayout.PropertyField(_maxDepth);
+
+            EditorGUILayout.PropertyField(_depthMode);
 
             serializedObject.ApplyModifiedProperties();
         }

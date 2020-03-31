@@ -10,6 +10,7 @@ namespace Akvfx
         #region Editable attributes
 
         [SerializeField] Material _material = null;
+        [SerializeField] DeviceSettings _deviceSettings = null;
 
         #endregion
 
@@ -24,7 +25,9 @@ namespace Akvfx
         void Start()
         {
             _mesh = new Mesh();
-            ConstructMesh();
+            _mesh.indexFormat = IndexFormat.UInt32;
+            ConstructMesh(_deviceSettings.depthMode.Width (), 
+                          _deviceSettings.depthMode.Height());
         }
 
         void OnDestroy()
@@ -45,10 +48,10 @@ namespace Akvfx
 
         #region Mesh object operations
 
-        void ConstructMesh()
+        void ConstructMesh(int width, int height)
         {
-            const int columns = 640;
-            const int rows = 576;
+            int columns = width;
+            int rows = height;
 
             using (var vertices = BuildVertexArray(columns, rows))
             {

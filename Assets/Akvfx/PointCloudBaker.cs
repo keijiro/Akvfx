@@ -32,6 +32,8 @@ namespace Akvfx
             public static readonly int DepthBuffer = Shader.PropertyToID("_DepthBuffer");
             public static readonly int XYTable     = Shader.PropertyToID("_XYTable");
             public static readonly int MaxDepth    = Shader.PropertyToID("_MaxDepth");
+            public static readonly int Width       = Shader.PropertyToID("_Width");
+            public static readonly int Height      = Shader.PropertyToID("_Height");
         }
 
         #endregion
@@ -45,8 +47,11 @@ namespace Akvfx
 
             // Temporary objects for convertion shader
             _material = new Material(_shader);
-            _colorBuffer = new ComputeBuffer(640 * 576, 4);
-            _depthBuffer = new ComputeBuffer(640 * 576 / 2, 4);
+
+            _colorBuffer = new ComputeBuffer(_deviceSettings.depthMode.Width () * 
+                                             _deviceSettings.depthMode.Height() * 4, 4);
+            _depthBuffer = new ComputeBuffer(_deviceSettings.depthMode.Width () * 
+                                             _deviceSettings.depthMode.Height() * 4 / 2, 4);
         }
 
         void OnDestroy()
@@ -89,6 +94,8 @@ namespace Akvfx
             _material.SetBuffer(ID.DepthBuffer, _depthBuffer);
             _material.SetBuffer(ID.XYTable, _xyTable);
             _material.SetFloat(ID.MaxDepth, _deviceSettings.maxDepth);
+            _material.SetInt(ID.Width, _deviceSettings.depthMode.Width());
+            _material.SetInt(ID.Height, _deviceSettings.depthMode.Height());
 
             var prevRT = RenderTexture.active;
             GraphicsExtensions.SetRenderTarget(_colorTexture, _positionTexture);
