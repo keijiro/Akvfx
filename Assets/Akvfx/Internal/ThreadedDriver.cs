@@ -106,14 +106,17 @@ namespace Akvfx
                 new DeviceConfiguration {
                     ColorFormat = ImageFormat.ColorBGRA32,
                     ColorResolution = ColorResolution.R1536p, // 2048 x 1536 (4:3)
-                    DepthMode = DepthMode.NFOV_Unbinned,      // 640x576
+                    DepthMode =  _settings.depthMode,
+                    CameraFPS = (_settings.depthMode == DepthMode.WFOV_Unbinned) ?
+                                    FPS.FPS15 : FPS.FPS30,
                     SynchronizedImagesOnly = true
                 }
             );
 
             // Construct XY table as a background task.
             Task.Run(() => {
-                _xyTable = new XYTable(device.GetCalibration(), 640, 576);
+                _xyTable = new XYTable(device.GetCalibration(), device.CurrentDepthMode.Width (), 
+                                                                device.CurrentDepthMode.Height());
             });
 
             // Set up the transformation object.
