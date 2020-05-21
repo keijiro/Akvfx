@@ -28,10 +28,10 @@ namespace Akvfx
 
         static class ID
         {
-            public static readonly int ColorBuffer = Shader.PropertyToID("_ColorBuffer");
-            public static readonly int DepthBuffer = Shader.PropertyToID("_DepthBuffer");
-            public static readonly int XYTable     = Shader.PropertyToID("_XYTable");
-            public static readonly int MaxDepth    = Shader.PropertyToID("_MaxDepth");
+            public static int ColorBuffer = Shader.PropertyToID("_ColorBuffer");
+            public static int DepthBuffer = Shader.PropertyToID("_DepthBuffer");
+            public static int XYTable     = Shader.PropertyToID("_XYTable");
+            public static int MaxDepth    = Shader.PropertyToID("_MaxDepth");
         }
 
         #endregion

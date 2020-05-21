@@ -92,13 +92,7 @@ namespace Akvfx
         public static void CreateDeviceSettings()
         {
             var asset = ScriptableObject.CreateInstance<DeviceSettings>();
-
-            AssetDatabase.CreateAsset(asset, "Assets/Akvfx Settings.asset");
-            AssetDatabase.SaveAssets();
-
-            EditorUtility.FocusProjectWindow();
-
-            Selection.activeObject = asset;
+            ProjectWindowUtil.CreateAsset(asset, "Akvfx Settings.asset");
         }
     }
 }

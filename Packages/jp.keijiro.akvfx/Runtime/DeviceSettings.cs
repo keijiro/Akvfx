@@ -4,7 +4,7 @@ namespace Akvfx
 {
     public sealed class DeviceSettings : ScriptableObject
     {
-        #region Editable fields
+        #region Serialized fields
 
         [SerializeField] bool _autoExposure = true;
         [SerializeField, Range(-11, 1)] int _exposure = -5;
@@ -27,108 +27,86 @@ namespace Akvfx
 
         #region Public accessors
 
-        public bool autoExposure {
-            get { return _autoExposure; }
-            set { _autoExposure = value; }
-        }
+        public bool autoExposure
+          { get => _autoExposure;
+            set => _autoExposure = value; }
 
-        public int exposure {
-            get { return _exposure; }
-            set { _exposure = value; }
-        }
+        public int exposure
+          { get => _exposure;
+            set => _exposure = value; }
 
-        public bool autoWhiteBalance {
-            get { return _autoWhiteBalance; }
-            set { _autoWhiteBalance = value; }
-        }
+        public bool autoWhiteBalance
+          { get => _autoWhiteBalance;
+            set => _autoWhiteBalance = value; }
 
-        public float whiteBalance {
-            get { return _whiteBalance; }
-            set { _whiteBalance = value; }
-        }
+        public float whiteBalance
+          { get => _whiteBalance;
+            set => _whiteBalance = value; }
 
-        public float brightness {
-            get { return _brightness; }
-            set { _brightness = value; }
-        }
+        public float brightness
+          { get => _brightness;
+            set => _brightness = value; }
 
-        public float contrast {
-            get { return _contrast; }
-            set { _contrast = value; }
-        }
+        public float contrast
+          { get => _contrast;
+            set => _contrast = value; }
 
-        public float saturation {
-            get { return _saturation; }
-            set { _saturation = value; }
-        }
+        public float saturation
+          { get => _saturation;
+            set => _saturation = value; }
 
-        public float sharpness {
-            get { return _sharpness; }
-            set { _sharpness = value; }
-        }
+        public float sharpness
+          { get => _sharpness;
+            set => _sharpness = value; }
 
-        public float gain {
-            get { return _gain; }
-            set { _gain = value; }
-        }
+        public float gain
+          { get => _gain;
+            set => _gain = value; }
 
-        public bool enableBlc {
-            get { return _enableBlc; }
-            set { _enableBlc = value; }
-        }
+        public bool enableBlc
+          { get => _enableBlc;
+            set => _enableBlc = value; }
 
-        public bool powerIs60Hz {
-            get { return _powerIs60Hz; }
-            set { _powerIs60Hz = value; }
-        }
+        public bool powerIs60Hz
+          { get => _powerIs60Hz;
+            set => _powerIs60Hz = value; }
 
-        public float maxDepth {
-            get { return _maxDepth; }
-            set { _maxDepth = value; }
-        }
+        public float maxDepth
+          { get => _maxDepth;
+            set => _maxDepth = value; }
 
         #endregion
 
         #region Internal properties
 
-        internal int ExposureDeviceValue { get {
-            if (_autoExposure) return -1;
-            return (int)(Mathf.Pow(2, _exposure) * 1000 * 1000);
-        } }
+        internal int ExposureDeviceValue
+          => _autoExposure ? -1 :
+             (int)(Mathf.Pow(2, _exposure) * 1000 * 1000);
 
-        internal int WhiteBalanceDeviceValue { get {
-            if (_autoWhiteBalance) return -1;
-            // Should be divisible by 10.
-            return (int)(_whiteBalance / 10) * 10;
-        } }
+        internal int WhiteBalanceDeviceValue
+          => _autoWhiteBalance ? -1 :
+             (int)(_whiteBalance / 10) * 10; // Should be divisible by 10.
 
-        internal int BrightnessDeviceValue { get {
-            return (int)Mathf.Lerp(0, 255, _brightness);
-        } }
+        internal int BrightnessDeviceValue
+          => (int)Mathf.Lerp(0, 255, _brightness);
 
-        internal int ContrastDeviceValue { get {
-            return (int)Mathf.Lerp(0, 10, _contrast);
-        } }
+        internal int ContrastDeviceValue
+          => (int)Mathf.Lerp(0, 10, _contrast);
 
-        internal int SaturationDeviceValue { get {
-            return (int)Mathf.Lerp(0, 63, _saturation);
-        } }
+        internal int SaturationDeviceValue
+          => (int)Mathf.Lerp(0, 63, _saturation);
 
-        internal int SharpnessDeviceValue { get {
-            return (int)Mathf.Lerp(0, 4, _sharpness);
-        } }
+        internal int SharpnessDeviceValue
+          => (int)Mathf.Lerp(0, 4, _sharpness);
 
-        internal int GainDeviceValue { get {
-            return (int)Mathf.Lerp(0, 255, _gain);
-        } }
+        internal int GainDeviceValue
+          => (int)Mathf.Lerp(0, 255, _gain);
 
-        internal int BlcDeviceValue { get {
-            return _enableBlc ? 1 : 0;
-        } }
+        internal int BlcDeviceValue
+          => _enableBlc ? 1 : 0;
 
-        internal int PowerFreqDeviceValue { get {
-            return _powerIs60Hz ? 2 : 1;
-        } }
+        internal int PowerFreqDeviceValue
+          => _powerIs60Hz ? 2 : 1;
 
         #endregion
     }
