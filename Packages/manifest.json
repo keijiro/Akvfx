@@ -17,6 +17,7 @@
   ],
   "dependencies": {
     "jp.keijiro.kino.post-processing": "2.1.12",
-    "jp.keijiro.klak.motion": "1.0.1"
+    "jp.keijiro.klak.motion": "1.0.1",
+    "jp.keijiro.metamesh": "0.0.3"
   }
 }
