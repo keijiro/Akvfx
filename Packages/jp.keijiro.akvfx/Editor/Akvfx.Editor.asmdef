@@ -1,0 +1,17 @@
+{
+    "name": "Akvfx.Editor",
+    "references": [
+        "GUID:ede47d4484123e14dbf267cd5aa956ae"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
