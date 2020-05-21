@@ -16,7 +16,7 @@
     }
   ],
   "dependencies": {
-    "jp.keijiro.kino.post-processing": "2.1.11",
+    "jp.keijiro.kino.post-processing": "2.1.12",
     "jp.keijiro.klak.motion": "1.0.1",
     "org.nuget.system.memory": "4.5.3"
   }
