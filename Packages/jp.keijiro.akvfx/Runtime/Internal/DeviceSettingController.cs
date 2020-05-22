@@ -47,6 +47,12 @@ namespace Akvfx
 
         void ApplyInternal(Device device, DeviceSettings settings, bool forceApply)
         {
+            // PowerFreq must be updated before Exposure because it affects
+            // the maximum allowed exposure time.
+            _powerFreq = ApplyControl
+              (device, ColorControlCommand.PowerlineFrequency,
+               settings.PowerFreqDeviceValue, _powerFreq, forceApply);
+
             _exposure = ApplyControl
               (device, ColorControlCommand.ExposureTimeAbsolute,
                settings.ExposureDeviceValue, _exposure, forceApply);
@@ -81,10 +87,6 @@ namespace Akvfx
             _blc = ApplyControl
               (device, ColorControlCommand.BacklightCompensation,
                settings.BlcDeviceValue, _blc, forceApply);
-
-            _powerFreq = ApplyControl
-              (device, ColorControlCommand.PowerlineFrequency,
-               settings.PowerFreqDeviceValue, _powerFreq, forceApply);
         }
 
         #endregion

@@ -7,7 +7,7 @@ namespace Akvfx
         #region Serialized fields
 
         [SerializeField] bool _autoExposure = true;
-        [SerializeField, Range(-11, 1)] int _exposure = -5;
+        [SerializeField, Range(-11, -6)] int _exposure = -6;
 
         [SerializeField] bool _autoWhiteBalance = true;
         [SerializeField, Range(2500, 10000)] float _whiteBalance = 3200;
@@ -81,7 +81,8 @@ namespace Akvfx
 
         internal int ExposureDeviceValue
           => _autoExposure ? -1 :
-             (int)(Mathf.Pow(2, _exposure) * 1000 * 1000);
+             (_powerIs60Hz ? _exposureTimeTable60 : _exposureTimeTable50)
+               [_exposure + 11];
 
         internal int WhiteBalanceDeviceValue
           => _autoWhiteBalance ? -1 :
@@ -107,6 +108,16 @@ namespace Akvfx
 
         internal int PowerFreqDeviceValue
           => _powerIs60Hz ? 2 : 1;
+
+        #endregion
+
+        #region Exposure time table (copy-pasted from color_priv.h)
+
+        static int [] _exposureTimeTable50 =
+          { 500, 1250, 2500, 10000, 20000, 30000 };
+
+        static int [] _exposureTimeTable60 =
+          { 500, 1250, 2500, 8330, 16670, 33330 };
 
         #endregion
     }
