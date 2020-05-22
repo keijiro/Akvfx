@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: KinectSettings
   m_EditorClassIdentifier: 
   _autoExposure: 1
-  _exposure: 1
+  _exposure: -6
   _autoWhiteBalance: 1
   _whiteBalance: 4076
   _brightness: 0.5
