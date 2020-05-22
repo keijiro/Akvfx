@@ -1,5 +1,4 @@
 using UnityEngine;
-using GraphicsFormat = UnityEngine.Experimental.Rendering.GraphicsFormat;
 
 namespace Akvfx {
 
@@ -52,18 +51,17 @@ public sealed class DeviceController : MonoBehaviour
         _driver = new ThreadedDriver(_deviceSettings);
 
         // Temporary objects for conversion
-        _colorBuffer = new ComputeBuffer(640 * 576, 4);
-        _depthBuffer = new ComputeBuffer(640 * 576 / 2, 4);
+        var (width, height) = (_driver.ImageWidth, _driver.ImageHeight);
+        _colorBuffer = new ComputeBuffer(width * height, 4);
+        _depthBuffer = new ComputeBuffer(width * height / 2, 4);
 
         _colorMap = new RenderTexture
-          (640, 576, 0,
-           RenderTextureFormat.Default,
-           RenderTextureReadWrite.sRGB);
+          (width, height, 0, RenderTextureFormat.Default);
         _colorMap.enableRandomWrite = true;
         _colorMap.Create();
 
         _positionMap = new RenderTexture
-          (640, 576, 0, RenderTextureFormat.ARGBFloat);
+          (width, height, 0, RenderTextureFormat.ARGBFloat);
         _positionMap.enableRandomWrite = true;
         _positionMap.Create();
     }
@@ -73,9 +71,10 @@ public sealed class DeviceController : MonoBehaviour
         if (_colorMap    != null) Destroy(_colorMap);
         if (_positionMap != null) Destroy(_positionMap);
 
-        _xyTable?.Dispose();
         _colorBuffer?.Dispose();
         _depthBuffer?.Dispose();
+
+        _xyTable?.Dispose();
         _driver?.Dispose();
     }
 
@@ -103,14 +102,14 @@ public sealed class DeviceController : MonoBehaviour
         // We don't need the last frame any more.
         _driver.ReleaseLastFrame();
 
-        // Invoke the unprojection compute threads.
+        // Invoke the unprojection compute shader.
         _compute.SetFloat(ID.MaxDepth, _deviceSettings.maxDepth);
         _compute.SetBuffer(0, ID.ColorBuffer, _colorBuffer);
         _compute.SetBuffer(0, ID.DepthBuffer, _depthBuffer);
         _compute.SetBuffer(0, ID.XYTable, _xyTable);
         _compute.SetTexture(0, ID.ColorMap, _colorMap);
         _compute.SetTexture(0, ID.PositionMap, _positionMap);
-        _compute.Dispatch(0, 640 / 8, 576 / 8, 1);
+        _compute.Dispatch(0, _colorMap.width / 8, _colorMap.height / 8, 1);
     }
 
     #endregion

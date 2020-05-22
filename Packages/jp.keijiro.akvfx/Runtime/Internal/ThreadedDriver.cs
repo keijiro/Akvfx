@@ -10,6 +10,9 @@ sealed class ThreadedDriver : IDisposable
 {
     #region Public properties and methods
 
+    public int ImageWidth => 640;
+    public int ImageHeight => 576;
+
     public ThreadedDriver(DeviceSettings settings)
     {
         // FIXME: Dangerous. We should do this only on Player.
@@ -106,8 +109,8 @@ sealed class ThreadedDriver : IDisposable
               SynchronizedImagesOnly = true });
 
         // Construct XY table as a background task.
-        Task.Run
-          (() => _xyTable = new XYTable(device.GetCalibration(), 640, 576));
+        Task.Run(() => _xyTable =
+          new XYTable(device.GetCalibration(), ImageWidth, ImageHeight));
 
         // Set up the transformation object.
         var transformation = new Transformation(device.GetCalibration());
