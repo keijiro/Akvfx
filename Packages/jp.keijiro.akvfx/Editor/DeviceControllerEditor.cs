@@ -1,26 +1,23 @@
 using UnityEngine;
 using UnityEditor;
 
-namespace Akvfx
+namespace Akvfx {
+
+[CanEditMultipleObjects]
+[CustomEditor(typeof(DeviceController))]
+sealed class DeviceControllerEditor : Editor
 {
-    [CanEditMultipleObjects]
-    [CustomEditor(typeof(DeviceController))]
-    sealed class DeviceControllerEditor : Editor
+    SerializedProperty _deviceSettings;
+
+    void OnEnable()
+      => _deviceSettings = serializedObject.FindProperty("_deviceSettings");
+
+    public override void OnInspectorGUI()
     {
-        SerializedProperty _deviceSettings;
-
-        void OnEnable()
-        {
-            _deviceSettings = serializedObject.FindProperty("_deviceSettings");
-        }
-
-        public override void OnInspectorGUI()
-        {
-            serializedObject.Update();
-
-            EditorGUILayout.PropertyField(_deviceSettings);
-
-            serializedObject.ApplyModifiedProperties();
-        }
+        serializedObject.Update();
+        EditorGUILayout.PropertyField(_deviceSettings);
+        serializedObject.ApplyModifiedProperties();
     }
+}
+
 }
