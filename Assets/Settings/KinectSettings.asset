@@ -15,7 +15,7 @@ MonoBehaviour:
   _autoExposure: 1
   _exposure: -6
   _autoWhiteBalance: 1
-  _whiteBalance: 4076
+  _whiteBalance: 3500
   _brightness: 0.5
   _contrast: 0.5
   _saturation: 0.5
