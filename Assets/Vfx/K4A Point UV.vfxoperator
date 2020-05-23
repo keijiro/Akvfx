@@ -78,8 +78,8 @@ MonoBehaviour:
   - {fileID: 41}
   - {fileID: 48}
   - {fileID: 55}
-  - {fileID: 61}
-  - {fileID: 65}
+  - {fileID: 69}
+  - {fileID: 71}
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
@@ -98,10 +98,35 @@ MonoBehaviour:
     min: -Infinity
     max: Infinity
     descendantCount: 0
+  - name: Map Width
+    path: Map Width
+    tooltip: 
+    sheetType: m_Uint
+    realType: UInt32
+    defaultValue:
+      m_Type:
+        m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      m_SerializableObject: 10
+    min: -Infinity
+    max: Infinity
+    descendantCount: 0
+  - name: Map Height
+    path: Map Height
+    tooltip: 
+    sheetType: m_Uint
+    realType: UInt32
+    defaultValue:
+      m_Type:
+        m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
+          PublicKeyToken=b77a5c561934e089
+      m_SerializableObject: 10
+    min: -Infinity
+    max: Infinity
+    descendantCount: 0
   m_GraphVersion: 4
   m_saved: 1
-  m_SubgraphDependencies:
-  - {fileID: 5371698745253816930, guid: db867b290fccacd438412f32e5ad80ec, type: 3}
+  m_SubgraphDependencies: []
   m_CategoryPath: 
 --- !u!114 &3
 MonoBehaviour:
@@ -121,10 +146,10 @@ MonoBehaviour:
   categories: []
   uiBounds:
     serializedVersion: 2
-    x: -345
+    x: -364
     y: 157
-    width: 1200
-    height: 272
+    width: 1220
+    height: 345
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +256,7 @@ MonoBehaviour:
       m_RegexMaxLength: 0
   m_Direction: 0
   m_LinkedSlots:
-  - {fileID: 62}
+  - {fileID: 70}
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,7 +392,7 @@ MonoBehaviour:
     attributes: []
   m_Direction: 0
   m_LinkedSlots:
-  - {fileID: 62}
+  - {fileID: 70}
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -837,7 +862,7 @@ MonoBehaviour:
     attributes: []
   m_Direction: 0
   m_LinkedSlots:
-  - {fileID: 66}
+  - {fileID: 70}
 --- !u!114 &29
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -871,7 +896,7 @@ MonoBehaviour:
     attributes: []
   m_Direction: 0
   m_LinkedSlots:
-  - {fileID: 67}
+  - {fileID: 72}
 --- !u!114 &30
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1526,7 +1551,7 @@ MonoBehaviour:
       inputSlot: {fileID: 7}
     - outputSlot: {fileID: 56}
       inputSlot: {fileID: 13}
-    position: {x: -345, y: 204}
+    position: {x: -340, y: 217}
     expandedSlots: []
     expanded: 0
 --- !u!114 &56
@@ -1565,7 +1590,7 @@ MonoBehaviour:
   m_LinkedSlots:
   - {fileID: 7}
   - {fileID: 13}
---- !u!114 &61
+--- !u!114 &69
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1574,22 +1599,49 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa71feae8df37b6479bb8bc6ab99f797, type: 3}
+  m_Script: {fileID: 11500000, guid: 330e0fca1717dde4aaa144f48232aa64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 2}
   m_Children: []
-  m_UIPosition: {x: -338, y: 250}
-  m_UICollapsed: 1
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
-  - {fileID: 62}
-  - {fileID: 63}
-  - {fileID: 64}
-  m_Subgraph: {fileID: 5371698745253816930, guid: db867b290fccacd438412f32e5ad80ec,
-    type: 3}
---- !u!114 &62
+  - {fileID: 70}
+  m_ExposedName: Map Width
+  m_Exposed: 1
+  m_Order: 2
+  m_Category: 
+  m_Min:
+    m_Type:
+      m_SerializableType: 
+    m_SerializableObject: 
+  m_Max:
+    m_Type:
+      m_SerializableType: 
+    m_SerializableObject: 
+  m_IsOutput: 0
+  m_Tooltip: 
+  m_Nodes:
+  - m_Id: 0
+    linkedSlots:
+    - outputSlot: {fileID: 70}
+      inputSlot: {fileID: 8}
+    - outputSlot: {fileID: 70}
+      inputSlot: {fileID: 14}
+    position: {x: -347, y: 277}
+    expandedSlots: []
+    expanded: 0
+  - m_Id: 1
+    linkedSlots:
+    - outputSlot: {fileID: 70}
+      inputSlot: {fileID: 28}
+    position: {x: 349, y: 339}
+    expandedSlots: []
+    expanded: 0
+--- !u!114 &70
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1606,17 +1658,17 @@ MonoBehaviour:
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
-  m_MasterSlot: {fileID: 62}
+  m_MasterSlot: {fileID: 70}
   m_MasterData:
-    m_Owner: {fileID: 61}
+    m_Owner: {fileID: 69}
     m_Value:
       m_Type:
         m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 
+      m_SerializableObject: 10
     m_Space: 2147483647
   m_Property:
-    name: Map Width
+    name: o
     m_serializedType:
       m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
@@ -1625,7 +1677,8 @@ MonoBehaviour:
   m_LinkedSlots:
   - {fileID: 8}
   - {fileID: 14}
---- !u!114 &63
+  - {fileID: 28}
+--- !u!114 &71
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1634,90 +1687,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c52d920e7fff73b498050a6b3c4404ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Parent: {fileID: 0}
-  m_Children: []
-  m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
-  m_UISuperCollapsed: 0
-  m_MasterSlot: {fileID: 63}
-  m_MasterData:
-    m_Owner: {fileID: 61}
-    m_Value:
-      m_Type:
-        m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
-          PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 
-    m_Space: 2147483647
-  m_Property:
-    name: Map Height
-    m_serializedType:
-      m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-    attributes: []
-  m_Direction: 1
-  m_LinkedSlots: []
---- !u!114 &64
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c52d920e7fff73b498050a6b3c4404ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Parent: {fileID: 0}
-  m_Children: []
-  m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
-  m_UISuperCollapsed: 0
-  m_MasterSlot: {fileID: 64}
-  m_MasterData:
-    m_Owner: {fileID: 61}
-    m_Value:
-      m_Type:
-        m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
-          PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 
-    m_Space: 2147483647
-  m_Property:
-    name: Point Count
-    m_serializedType:
-      m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-    attributes: []
-  m_Direction: 1
-  m_LinkedSlots: []
---- !u!114 &65
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa71feae8df37b6479bb8bc6ab99f797, type: 3}
+  m_Script: {fileID: 11500000, guid: 330e0fca1717dde4aaa144f48232aa64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Parent: {fileID: 2}
   m_Children: []
-  m_UIPosition: {x: 373, y: 332}
-  m_UICollapsed: 1
+  m_UIPosition: {x: 0, y: 0}
+  m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots: []
   m_OutputSlots:
-  - {fileID: 66}
-  - {fileID: 67}
-  - {fileID: 68}
-  m_Subgraph: {fileID: 5371698745253816930, guid: db867b290fccacd438412f32e5ad80ec,
-    type: 3}
---- !u!114 &66
+  - {fileID: 72}
+  m_ExposedName: Map Height
+  m_Exposed: 1
+  m_Order: 3
+  m_Category: 
+  m_Min:
+    m_Type:
+      m_SerializableType: 
+    m_SerializableObject: 
+  m_Max:
+    m_Type:
+      m_SerializableType: 
+    m_SerializableObject: 
+  m_IsOutput: 0
+  m_Tooltip: 
+  m_Nodes:
+  - m_Id: 0
+    linkedSlots:
+    - outputSlot: {fileID: 72}
+      inputSlot: {fileID: 29}
+    position: {x: 345, y: 380}
+    expandedSlots: []
+    expanded: 0
+--- !u!114 &72
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1734,52 +1737,17 @@ MonoBehaviour:
   m_UIPosition: {x: 0, y: 0}
   m_UICollapsed: 1
   m_UISuperCollapsed: 0
-  m_MasterSlot: {fileID: 66}
+  m_MasterSlot: {fileID: 72}
   m_MasterData:
-    m_Owner: {fileID: 65}
+    m_Owner: {fileID: 71}
     m_Value:
       m_Type:
         m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
           PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 
+      m_SerializableObject: 10
     m_Space: 2147483647
   m_Property:
-    name: Map Width
-    m_serializedType:
-      m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-    attributes: []
-  m_Direction: 1
-  m_LinkedSlots:
-  - {fileID: 28}
---- !u!114 &67
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c52d920e7fff73b498050a6b3c4404ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Parent: {fileID: 0}
-  m_Children: []
-  m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
-  m_UISuperCollapsed: 0
-  m_MasterSlot: {fileID: 67}
-  m_MasterData:
-    m_Owner: {fileID: 65}
-    m_Value:
-      m_Type:
-        m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
-          PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 
-    m_Space: 2147483647
-  m_Property:
-    name: Map Height
+    name: o
     m_serializedType:
       m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
         PublicKeyToken=b77a5c561934e089
@@ -1787,37 +1755,3 @@ MonoBehaviour:
   m_Direction: 1
   m_LinkedSlots:
   - {fileID: 29}
---- !u!114 &68
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c52d920e7fff73b498050a6b3c4404ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Parent: {fileID: 0}
-  m_Children: []
-  m_UIPosition: {x: 0, y: 0}
-  m_UICollapsed: 1
-  m_UISuperCollapsed: 0
-  m_MasterSlot: {fileID: 68}
-  m_MasterData:
-    m_Owner: {fileID: 65}
-    m_Value:
-      m_Type:
-        m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
-          PublicKeyToken=b77a5c561934e089
-      m_SerializableObject: 
-    m_Space: 2147483647
-  m_Property:
-    name: Point Count
-    m_serializedType:
-      m_SerializableType: System.UInt32, mscorlib, Version=4.0.0.0, Culture=neutral,
-        PublicKeyToken=b77a5c561934e089
-    attributes: []
-  m_Direction: 1
-  m_LinkedSlots: []

@@ -10,8 +10,8 @@ sealed class ThreadedDriver : IDisposable
 {
     #region Public properties and methods
 
-    public int ImageWidth => 640;
-    public int ImageHeight => 576;
+    public static int ImageWidth => 640;
+    public static int ImageHeight => 576;
 
     public ThreadedDriver(DeviceSettings settings)
     {

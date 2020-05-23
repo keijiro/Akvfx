@@ -10,15 +10,21 @@ sealed class VFXPointCloudBinder : VFXBinderBase
 {
     #region VFX Binder Implementation
 
-    public string ColorMapProperty {
-        get => (string)_colorMapProperty;
-        set => _colorMapProperty = value;
-    }
+    public string ColorMapProperty
+      { get => (string)_colorMapProperty;
+        set => _colorMapProperty = value; }
 
-    public string PositionMapProperty {
-        get => (string)_positionMapProperty;
-        set => _positionMapProperty = value;
-    }
+    public string PositionMapProperty
+      { get => (string)_positionMapProperty;
+        set => _positionMapProperty = value; }
+
+    public string WidthProperty
+      { get => (string)_widthProperty;
+        set => _widthProperty = value; }
+
+    public string HeightProperty
+      { get => (string)_heightProperty;
+        set => _heightProperty = value; }
 
     [VFXPropertyBinding("UnityEngine.Texture2D"), SerializeField]
     ExposedProperty _colorMapProperty = "ColorMap";
@@ -26,12 +32,20 @@ sealed class VFXPointCloudBinder : VFXBinderBase
     [VFXPropertyBinding("UnityEngine.Texture2D"), SerializeField]
     ExposedProperty _positionMapProperty = "PositionMap";
 
+    [VFXPropertyBinding("System.UInt32"), SerializeField]
+    ExposedProperty _widthProperty = "Width";
+
+    [VFXPropertyBinding("System.UInt32"), SerializeField]
+    ExposedProperty _heightProperty = "Height";
+
     public DeviceController Target = null;
 
     public override bool IsValid(VisualEffect component)
       => Target != null &&
          component.HasTexture(_colorMapProperty) &&
-         component.HasTexture(_positionMapProperty);
+         component.HasTexture(_positionMapProperty) &&
+         component.HasUInt(_widthProperty) &&
+         component.HasUInt(_heightProperty);
 
     public override void UpdateBinding(VisualEffect component)
     {
@@ -39,6 +53,8 @@ sealed class VFXPointCloudBinder : VFXBinderBase
         if (Target.PositionMap == null) return;
         component.SetTexture(_colorMapProperty, Target.ColorMap);
         component.SetTexture(_positionMapProperty, Target.PositionMap);
+        component.SetUInt(_widthProperty, (uint)ThreadedDriver.ImageWidth);
+        component.SetUInt(_heightProperty, (uint)ThreadedDriver.ImageHeight);
     }
 
     public override string ToString()

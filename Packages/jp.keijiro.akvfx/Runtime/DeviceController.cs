@@ -51,7 +51,9 @@ public sealed class DeviceController : MonoBehaviour
         _driver = new ThreadedDriver(_deviceSettings);
 
         // Temporary objects for conversion
-        var (width, height) = (_driver.ImageWidth, _driver.ImageHeight);
+        var width = ThreadedDriver.ImageWidth;
+        var height = ThreadedDriver.ImageHeight;
+
         _colorBuffer = new ComputeBuffer(width * height, 4);
         _depthBuffer = new ComputeBuffer(width * height / 2, 4);
 
