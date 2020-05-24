@@ -1617,7 +1617,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615010}
   m_ExposedName: MapWidth
   m_Exposed: 1
-  m_Order: 3
+  m_Order: 2
   m_Category: Akvfx
   m_Min:
     m_Type:
@@ -1686,7 +1686,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615012}
   m_ExposedName: MapHeight
   m_Exposed: 1
-  m_Order: 5
+  m_Order: 3
   m_Category: Akvfx
   m_Min:
     m_Type:
