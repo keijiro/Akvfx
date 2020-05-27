@@ -4,9 +4,17 @@ namespace Akvfx {
 
 public sealed class DeviceController : MonoBehaviour
 {
-    #region Editable attributes
+    #region Editable attribute
 
     [SerializeField] DeviceSettings _deviceSettings = null;
+
+    public DeviceSettings DeviceSettings
+      { get => _deviceSettings; set => SetDeviceSettings(value); }
+
+    #endregion
+
+    #region Asset reference
+
     [SerializeField, HideInInspector] ComputeShader _compute = null;
 
     #endregion
@@ -18,7 +26,7 @@ public sealed class DeviceController : MonoBehaviour
 
     #endregion
 
-    #region Internal objects
+    #region Private members
 
     ThreadedDriver _driver;
     ComputeBuffer _xyTable;
@@ -26,6 +34,12 @@ public sealed class DeviceController : MonoBehaviour
     ComputeBuffer _depthBuffer;
     RenderTexture _colorMap;
     RenderTexture _positionMap;
+
+    void SetDeviceSettings(DeviceSettings settings)
+    {
+        _deviceSettings = settings;
+        if (_driver != null) _driver.Settings = settings;
+    }
 
     #endregion
 

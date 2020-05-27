@@ -18,7 +18,7 @@ sealed class ThreadedDriver : IDisposable
         // FIXME: Dangerous. We should do this only on Player.
         K4aExtensions.DisableSafeCopyNativeBuffers();
 
-        _settings = settings;
+        Settings = settings;
 
         _captureThread = new Thread(CaptureThread);
         _captureThread.Start();
@@ -34,6 +34,8 @@ sealed class ThreadedDriver : IDisposable
 
         GC.SuppressFinalize(this);
     }
+
+    public DeviceSettings Settings { get; set; }
 
     public ReadOnlySpan<float> XYTable
       => _xyTable != null ? _xyTable.Data : null;
@@ -61,7 +63,6 @@ sealed class ThreadedDriver : IDisposable
 
     #region Private objects
 
-    DeviceSettings _settings;
     XYTable _xyTable;
 
     #endregion
@@ -116,7 +117,7 @@ sealed class ThreadedDriver : IDisposable
         var transformation = new Transformation(device.GetCalibration());
 
         // Initially apply the device settings.
-        var setter = new DeviceSettingController(device, _settings);
+        var setter = new DeviceSettingController(device, Settings);
 
         while (!_terminate)
         {
@@ -133,7 +134,7 @@ sealed class ThreadedDriver : IDisposable
             TrimQueue(1);
 
             // Apply changes on the device settings.
-            setter.ApplySettings(device, _settings);
+            setter.ApplySettings(device, Settings);
         }
 
         // Cleaning up.
