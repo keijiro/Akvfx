@@ -1,0 +1,42 @@
+#pragma kernel Unproject
+
+Buffer<uint> ColorBuffer;
+Buffer<uint> DepthBuffer;
+Buffer<float> XYTable;
+float MaxDepth;
+RWTexture2D<float4> ColorMap;
+RWTexture2D<float4> PositionMap;
+
+float3 uint_to_float3(uint raw)
+{
+    return (uint3(raw >> 16, raw >> 8, raw) & 0xff) / 255.0;
+}
+
+uint uint_to_ushort(uint raw, bool high)
+{
+    uint4 c4 = uint4(raw, raw >> 8, raw >> 16, raw >> 24) & 0xff;
+    uint2 c2 = high ? c4.zw : c4.xy;
+    return c2.x + (c2.y << 8);
+}
+
+[numthreads(8, 8, 1)]
+void Unproject(uint2 id : SV_DispatchThreadID)
+{
+    // Buffer index
+    uint idx = (577 - id.y) * 640 + id.x;
+
+    // Color sample
+    float3 color = uint_to_float3(ColorBuffer[idx]);
+
+    // Depth sample (int16 -> float)
+    float depth = uint_to_ushort(DepthBuffer[idx >> 1], idx & 1) / 1000.0;
+    float mask = depth > 0 && depth < MaxDepth;
+    float z = lerp(MaxDepth, depth, mask);
+
+    // XY table lookup
+    float2 xy = float2(XYTable[idx * 2], -XYTable[idx * 2 + 1]);
+
+    // Map
+    ColorMap[id] = float4(color, mask);
+    PositionMap[id] = float4(xy * z, z, mask);
+}

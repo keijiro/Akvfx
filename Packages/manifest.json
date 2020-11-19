@@ -6,26 +6,18 @@
       "scopes": [
         "org.nuget"
       ]
+    },
+    {
+      "name": "Keijiro",
+      "url": "https://registry.npmjs.com",
+      "scopes": [
+        "jp.keijiro"
+      ]
     }
   ],
   "dependencies": {
-    "com.unity.package-manager-ui": "2.2.0",
-    "com.unity.render-pipelines.high-definition": "6.9.1-preview",
-    "com.unity.ugui": "1.0.0",
-    "jp.keijiro.klak.motion": "https://github.com/keijiro/ProceduralMotion.git#upm",
-    "org.nuget.system.memory": "4.5.3",
-    "com.unity.modules.animation": "1.0.0",
-    "com.unity.modules.imageconversion": "1.0.0",
-    "com.unity.modules.physics": "1.0.0",
-    "com.unity.modules.physics2d": "1.0.0",
-    "com.unity.modules.ui": "1.0.0",
-    "com.unity.modules.uielements": "1.0.0",
-    "com.unity.modules.vr": "1.0.0"
-  },
-  "lock": {
-    "jp.keijiro.klak.motion": {
-      "hash": "d0e16b9ed633cb53c6865e40fbe270172b471b74",
-      "revision": "upm"
-    }
+    "jp.keijiro.kino.post-processing": "2.1.12",
+    "jp.keijiro.klak.motion": "1.0.1",
+    "jp.keijiro.metamesh": "0.0.4"
   }
 }

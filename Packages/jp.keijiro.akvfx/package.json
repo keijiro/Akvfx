@@ -1,0 +1,17 @@
+{
+    "author": "Keijiro Takahashi",
+    "dependencies": {
+        "org.nuget.system.memory": "4.5.3",
+        "com.unity.mathematics": "1.1.0",
+        "com.unity.visualeffectgraph": "7.3.1"
+    },
+    "description": "Azure Kinect plugin for Unity VFX Graph",
+    "displayName": "Akvfx",
+    "keywords": [ "unity" ],
+    "license": "SEE LICENSE IN LICENSE",
+    "name": "jp.keijiro.akvfx",
+    "repository": "github:keijiro/Akvfx",
+    "unity": "2019.3",
+    "unityRelease": "0f1",
+    "version": "1.0.2"
+}

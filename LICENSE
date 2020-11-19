@@ -1,0 +1,19 @@
+This package contains the following software components:
+
+- Microsoft Azure Kinect Sensor SDK
+- Akvfx
+
+The Microsoft Azure Kinect Sensor SDK files (the .dll files placed in the
+Plugins directory) are distributed under the Microsoft Software License Terms.
+Please see the following page for complete terms.
+
+https://www.nuget.org/packages/Microsoft.Azure.Kinect.Sensor/1.2.0/License
+
+The Sensor SDK files excepting the Depth Engine DLL (depthengine_*_*.dll) is
+also available under an MIT-style license. Please see the following repository
+for details.
+
+https://github.com/microsoft/Azure-Kinect-Sensor-SDK
+
+Akvfx (all other components in this package) is released into the public
+domain.
