@@ -2,6 +2,7 @@
     "author": "Keijiro Takahashi",
     "dependencies": {
         "org.nuget.system.memory": "4.5.3",
+        "org.nuget.microsoft.azure.kinect.sensor": "1.4.1",
         "com.unity.mathematics": "1.1.0",
         "com.unity.visualeffectgraph": "7.3.1"
     },
